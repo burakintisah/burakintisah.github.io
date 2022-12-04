@@ -49,20 +49,18 @@ round-avatar: true
 social-network-links:
   email: "burak.intisah@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-#  facebook: deanattali
-  github: daattali
-#  twitter: daattali
+  github: burakintisah
+  linkedin: burakintisah
+  instagram: osman.burakk
+#  telephone: +14159998888
 #  patreon: DeanAttali
 #  youtube: c/daattali
 #  medium: yourname
 #  reddit: yourname
-  linkedin: burak.intisah
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
-#  instagram: deanat78
 #  spotify: yourname
-#  telephone: +14159998888
 #  steam: deanat78
 #  twitch: yourname
 #  yelp: yourname
@@ -244,8 +242,7 @@ date_format: "%B %-d, %Y"
 # --- You don't need to touch anything below here (but you can if you want) --- #
 #################################################################################
 
-# Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Europe/Istanbul"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
@@ -254,7 +251,7 @@ paginate: 5
 kramdown:
   input: GFM
 
-# Default YAML values (more information on Jekyll's site)
+# Default YAML values 
 defaults:
   -
     scope:
