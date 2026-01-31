@@ -10,7 +10,7 @@ export const PHOTO_MANIFEST = {
     'kyoto-fushimi_inari-1.jpg',
   ],
   
-  usa: [
+  USA: [
     'san-diego-burak-1.jpeg'
   ],
   
@@ -28,7 +28,12 @@ export const PHOTO_MANIFEST = {
     'usa-losangeles-6.jpg',
     'usa-miami-how-to-solve-issues.jpg',
     'usa-orlando-epcot-1.jpg',
-    'usa-orlando-onlydevs.jpg'
+    'usa-orlando-onlydevs.jpg',
+    'usa-lasvegas-gordon-ramsay-team-1.jpg',
+    'usa-lasvegas-caesars-fountain-1.jpg',
+    'usa-lasvegas-fiveguys-board-1.jpg',
+    'usa-lasvegas-liberty-statue-1.jpg',
+    'usa-lasvegas-team-retreat-1.jpg'
   ],
   
   trendyol: [
