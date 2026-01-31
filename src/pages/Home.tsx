@@ -30,17 +30,17 @@ const Home: React.FC = () => {
   const featuredBlogPosts = [
     {
       id: 1,
+      title: 'I Was Using Claude Code All Wrong: From Chatbot to Autonomous Engineering Team',
+      url: 'https://medium.com/@burak.intisah/i-was-using-claude-code-all-wrong-from-chatbot-to-autonomous-engineering-team-61bfb2e9575c',
+      summary: 'My journey from using AI as a simple chatbot to building an autonomous engineering workflow—discover how Claude Code transformed my development process with real-world examples and practical insights.',
+      tag: 'AI & Development',
+    },
+    {
+      id: 2,
       title: 'TDD and BDD: Different Focuses, Same Goal — High-Quality Software',
       url: 'https://medium.com/@burak.intisah/tdd-and-bdd-different-focuses-same-goal-high-quality-software-7ef529f9d3dc',
       summary: 'Choosing between test-driven development and behavior-driven development—with histories, pros/cons, key differences, and best practices—helps teams deliver higher-quality software.',
       tag: 'Software Development',
-    },
-    {
-      id: 2,
-      title: 'What Is Optimistic Nihilism?',
-      url: 'https://medium.com/@burak.intisah/what-is-optimistic-nihilism-600c4abaa999',
-      summary: 'An introduction to optimistic nihilism, explaining how embracing life\'s impermanence can reduce stress, foster freedom, and still allow us to find joy and purpose.',
-      tag: 'Philosophy',
     },
   ];
 

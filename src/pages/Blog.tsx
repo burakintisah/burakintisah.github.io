@@ -16,6 +16,13 @@ const Blog: React.FC = () => {
 
   const blogArticles: BlogArticle[] = [
     {
+      id: 4,
+      title: 'I Was Using Claude Code All Wrong: From Chatbot to Autonomous Engineering Team',
+      url: 'https://medium.com/@burak.intisah/i-was-using-claude-code-all-wrong-from-chatbot-to-autonomous-engineering-team-61bfb2e9575c',
+      summary: 'My journey from using AI as a simple chatbot to building an autonomous engineering workflow—discover how Claude Code transformed my development process with real-world examples and practical insights.',
+      tag: 'AI & Development',
+    },
+    {
       id: 1,
       title: 'TDD and BDD: Different Focuses, Same Goal — High-Quality Software',
       url: 'https://medium.com/@burak.intisah/tdd-and-bdd-different-focuses-same-goal-high-quality-software-7ef529f9d3dc',
