@@ -1,21 +1,31 @@
 ---
-description: 
+description: Comprehensive development rules and guidelines for Burak's Portfolio Website
 globs: 
-alwaysApply: false
+  - "**/*.tsx"
+  - "**/*.ts"
+  - "**/*.css"
+alwaysApply: true
 ---
 # Cursor Rules for Burak's Portfolio Website
 
 ## Project Overview
 This is a modern React TypeScript portfolio website for a backend engineer, built with Vite, Tailwind CSS, and Framer Motion. The site showcases professional experience, projects, blog posts, and photography with full dark mode support.
 
+**Live Site**: https://burakintisah.com (Deployed on GitHub Pages)  
+**Tech Stack**: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Firebase  
+**Domain**: Custom domain with CNAME (burakintisah.com)
+
 ## Tech Stack & Architecture
 - **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite
+- **Build Tool**: Vite (optimized with manual chunks)
 - **Styling**: Tailwind CSS with custom design system
 - **Animations**: Framer Motion
-- **Routing**: React Router DOM
+- **Routing**: React Router DOM (SPA with 404.html for GitHub Pages)
 - **Icons**: Lucide React (ONLY - no other icon libraries)
 - **State Management**: React hooks (useState, useEffect)
+- **Backend**: Firebase Firestore (analytics), Firebase Auth
+- **Hosting**: GitHub Pages with gh-pages package
+- **Deployment**: Manual via `npm run deploy` (no CI/CD yet)
 
 ## Design Philosophy
 - **Beautiful, not cookie cutter**: Every design should be unique, modern, and production-ready
@@ -173,12 +183,117 @@ className="flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 
 - Verify responsive design before pushing
 - Keep commits focused and atomic
 
+## Firebase & Analytics
+- **Firestore Database**: Used for visitor analytics tracking
+- **Environment Variables**: Stored in `.env` (not committed to git)
+- **Analytics Dashboard**: Protected by password (`/analytics` route)
+- **Admin Password**: Defined in `src/components/AdminAuth.tsx`
+- **Tracked Data**: Page views, sessions, device type, browser, location, referrer
+- **Security**: Update Firestore rules for production use
+
+## Deployment Process
+1. **Build**: `npm run build` - Creates optimized production build in `/dist`
+2. **Deploy**: `npm run deploy` - Pushes `/dist` to `gh-pages` branch
+3. **GitHub Pages**: Automatically deploys from `gh-pages` branch
+4. **CNAME**: Custom domain (burakintisah.com) configured via `public/CNAME`
+5. **SPA Routing**: `public/404.html` handles client-side routing on GitHub Pages
+
+### Build Configuration (vite.config.ts)
+- Code splitting: vendor, router, firebase, motion, icons
+- Chunk size limit: 1000KB
+- Optimized deps exclude: lucide-react
+
+## Photo Management
+- **Location**: `public/photos/` organized by category
+- **Categories**: cherry/, japan/, korea/, trendyol/, usa/
+- **Manifest**: `src/data/photoManifest.ts` - Manual photo registry
+- **Format**: JPEG preferred, optimize before adding (<500KB)
+- **Loading**: Uses photoLoader utility for efficient loading
+
+## Environment Setup
+Required `.env` variables:
+```env
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+```
+
+## Pages & Routes
+- `/` - Home (hero, featured projects, blog posts)
+- `/about` - Personal background, skills
+- `/experience` - Work history timeline
+- `/projects` - Project showcase with filtering
+- `/blog` - Blog posts (links to Medium)
+- `/photography` - Photo gallery with categories
+- `/bookshelf` - Book collection
+- `/reading-list` - Current reading
+- `/uses` - Tools and tech stack
+- `/connect` - Contact information
+- `/analytics` - Admin dashboard (password protected)
+
+## Common Development Tasks
+
+### Adding a New Project
+1. Add project image to `public/projects/photos/`
+2. Edit `src/pages/Projects.tsx`
+3. Add to `projects` array with proper interface
+4. Include: title, description, tags, imageUrl, githubUrl, liveUrl
+
+### Adding Photos
+1. Optimize image (<500KB, JPEG format)
+2. Add to `public/photos/[category]/`
+3. Update `src/data/photoManifest.ts`
+4. Follow naming convention: `location-description-number.jpg`
+
+### Updating Experience
+1. Edit `src/pages/Experience.tsx`
+2. Update `experiences` array
+3. Include: company, role, period, description, technologies
+
+### Modifying Analytics
+1. Service logic: `src/services/analytics.ts`
+2. Dashboard UI: `src/pages/Analytics.tsx`
+3. Auth component: `src/components/AdminAuth.tsx`
+4. Hook: `src/hooks/useAnalytics.ts`
+
 ## Testing Checklist
 - [ ] Component renders in both light and dark modes
-- [ ] Responsive design works on all breakpoints
+- [ ] Responsive design works on all breakpoints (sm, md, lg, xl)
 - [ ] Animations are smooth and purposeful
-- [ ] Accessibility features work properly
+- [ ] Accessibility features work properly (ARIA, keyboard nav)
 - [ ] TypeScript compiles without errors
-- [ ] Performance is optimized
+- [ ] Performance is optimized (Lighthouse >95)
+- [ ] Images are optimized and lazy loaded
+- [ ] Firebase analytics tracking works
+- [ ] Routing works on GitHub Pages (404.html)
+- [ ] Dark mode toggle persists across pages
+- [ ] External links open in new tab
+- [ ] Mobile navigation works properly
+
+## Performance Best Practices
+- Optimize images before adding (TinyPNG, Squoosh)
+- Use lazy loading for heavy components
+- Monitor bundle size (check vite.config.ts chunks)
+- Test Core Web Vitals
+- Verify code splitting works correctly
+
+## Important Notes
+- **NO tests before asking**: User rule - never run build/tests without permission
+- **Manual deployment**: Always manually deploy, no automatic CI/CD
+- **Firebase costs**: Monitor Firestore usage, currently in test mode
+- **Photo sizes**: Several images are 3-6MB, need optimization
+- **Admin password**: Change default password in production
+
+## Troubleshooting
+- **404 on page refresh**: Check `public/404.html` script
+- **Analytics not working**: Verify `.env` Firebase config
+- **Images not loading**: Check public folder paths (no `/public` in URL)
+- **Build fails**: Check TypeScript errors, verify dependencies
+- **Dark mode not persisting**: Check localStorage implementation
+- **Routing issues**: Verify basename in React Router (should be `/`)
 
 Remember: Every component should be beautiful, functional, and production-ready. Focus on creating a cohesive, professional portfolio that showcases backend engineering expertise while maintaining excellent user experience. 
