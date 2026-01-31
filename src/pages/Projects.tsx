@@ -87,22 +87,13 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Confix',
-      description: 'A fullstack monorepo application for managing configuration parameters with country-based overrides.',
-      tags: ['Vue', 'Node.js'],
-      imageUrl: '/projects/photos/confix.png',
-      githubUrl: 'https://github.com/burakintisah/confix',
-      liveUrl: 'https://confix-frontend-0e844ee0d8d7.herokuapp.com/',
-    },
-    {
-      id: 4,
       title: 'Prelude',
       description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
       tags: ['Python'],
       imageUrl: '/projects/photos/prelude.png',
     },
     {
-      id: 5,
+      id: 4,
       title: 'Fast Denouncement',
       description: 'An Android app in Java using Google Maps for anonymous GPS-based reporting, backed by a Node.js server, which won 1st place at the Bilkent hackathon.',
       tags: ['Android', 'Java', 'Node.js'],
@@ -110,7 +101,7 @@ const Projects: React.FC = () => {
       liveUrl: 'http://bilnews.bilkent.edu.tr/cs-students-win-mobile-application-marathon/',
     },
     {
-      id: 6,
+      id: 5,
       title: 'Dark Room',
       description: 'An Android puzzle game in Java that uses audio and vibration clues to escape, which won 1st place at the national BTK game marathon.',
       tags: ['Android', 'Java'],
