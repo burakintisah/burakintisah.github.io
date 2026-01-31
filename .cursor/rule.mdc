@@ -177,6 +177,12 @@ className="flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 
 - Use camelCase for utilities and hooks: `useLocalStorage.ts`
 - Use kebab-case for assets: `hero-background.jpg`
 
+## Temporary Files & Exclusions
+- **NEVER commit** `.pr-*.md` files (PR description drafts)
+- **NEVER commit** `.env` files (sensitive credentials)
+- These are in `.gitignore` - keep them local only
+- PR descriptions should be created via GitHub web interface
+
 ## Git Practices
 - Commit frequently with descriptive messages
 - Test dark mode before committing

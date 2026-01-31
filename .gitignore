@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# PR description files (temporary, don't commit)
+.pr-*.md
