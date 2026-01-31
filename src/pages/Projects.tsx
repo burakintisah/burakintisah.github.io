@@ -87,15 +87,6 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Confix',
-      description: 'A fullstack monorepo application for managing configuration parameters with country-based overrides.',
-      tags: ['Vue', 'Node.js'],
-      imageUrl: '/projects/photos/confix.png',
-      githubUrl: 'https://github.com/burakintisah/confix',
-      liveUrl: 'https://confix-frontend-0e844ee0d8d7.herokuapp.com/',
-    },
-    {
-      id: 4,
       title: 'Prelude',
       description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
       tags: ['Python'],
