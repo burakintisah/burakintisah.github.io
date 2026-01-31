@@ -24,15 +24,6 @@ const Home: React.FC = () => {
       githubUrl: 'https://github.com/burakintisah/flowergarden',
       liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
     },
-    {
-      id: 3,
-      title: 'Confix',
-      description: 'A fullstack monorepo application for managing configuration parameters with country-based overrides.',
-      tags: ['Vue', 'Node.js'],
-      imageUrl: '/projects/photos/confix.png',
-      githubUrl: 'https://github.com/burakintisah/confix',
-      liveUrl: 'https://confix-frontend-0e844ee0d8d7.herokuapp.com/',
-    },
   ];
 
   // Featured blog posts data
