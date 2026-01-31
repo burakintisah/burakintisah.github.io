@@ -95,14 +95,20 @@ npx imagemin public/photos/**/*.{jpg,jpeg,png} --out-dir=public/photos/optimized
 
 ## 🌐 Deployment
 
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+The site is automatically deployed to GitHub Pages using **GitHub Actions** when changes are pushed to the main branch.
 
-**Live Site**: [https://burakintisah.github.io](https://burakintisah.github.io)
+**Live Site**: [https://burakintisah.com](https://burakintisah.com)
 
-### Manual Deployment
+### Automatic Deployment (GitHub Actions)
+
+Every push to `main` triggers automatic deployment. See [Deployment Guide](.github/DEPLOYMENT.md) for setup details.
+
+### Manual Deployment (Legacy - Not Recommended)
 ```bash
-npm run deploy
+npm run deploy  # Uses gh-pages package (old method)
 ```
+
+**Note**: GitHub Actions deployment is now the recommended method.
 
 ## 📝 Content Management
 
