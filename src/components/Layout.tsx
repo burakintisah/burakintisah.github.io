@@ -92,7 +92,7 @@ const Layout: React.FC = () => {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2 text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">
               <Terminal className="h-6 w-6" />
-              <span className="font-semibold text-lg">Burak Intisah</span>
+              <span className="font-semibold text-lg">Ayse Aydogan</span>
             </Link>
             
             {/* Desktop Navigation */}
@@ -392,10 +392,10 @@ const Layout: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
-              <span className="font-medium text-gray-800 dark:text-gray-200">Burak Intisah</span>
+              <span className="font-medium text-gray-800 dark:text-gray-200">Ayse Aydogan</span>
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} Osman Burak Intisah
+              © {new Date().getFullYear()} Ayse Aydogan
             </div>
           </div>
         </div>
