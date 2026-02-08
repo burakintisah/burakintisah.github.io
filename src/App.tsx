@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import About from './pages/About';
 import Uses from './pages/Uses';
@@ -19,7 +20,7 @@ function App() {
   useAnalytics();
 
   return (
-    <>
+    <ErrorBoundary>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -36,7 +37,7 @@ function App() {
           <Route path="analytics" element={<Analytics />} />
         </Route>
       </Routes>
-    </>
+    </ErrorBoundary>
   );
 }
 

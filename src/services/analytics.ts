@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, where, Timestamp, FieldValue, deleteDoc, doc, writeBatch } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, query, orderBy, getDocs, where, Timestamp, FieldValue, writeBatch } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 export interface VisitorData {
@@ -101,15 +101,22 @@ class AnalyticsService {
 
   private async getLocationData(): Promise<{ country?: string; city?: string; ip?: string }> {
     try {
-      // Using a free IP geolocation service
+      // Check session cache first to avoid repeated API calls
+      const cached = sessionStorage.getItem('analytics_location_cache');
+      if (cached) {
+        return JSON.parse(cached);
+      }
+
       const response = await fetch('https://ipapi.co/json/');
       if (response.ok) {
         const data = await response.json();
-        return {
+        const locationData = {
           country: data.country_name,
           city: data.city,
           ip: data.ip
         };
+        sessionStorage.setItem('analytics_location_cache', JSON.stringify(locationData));
+        return locationData;
       }
     } catch (error) {
       console.warn('Failed to get location data:', error);
@@ -302,14 +309,14 @@ class AnalyticsService {
         
         // Apply date filters (if not already applied in query)
         if (filters.startDate) {
-          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as any).toDate();
+          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as Timestamp).toDate();
           if (docDate < filters.startDate) {
             return false;
           }
         }
         
         if (filters.endDate) {
-          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as any).toDate();
+          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as Timestamp).toDate();
           if (docDate > filters.endDate) {
             return false;
           }
@@ -412,14 +419,14 @@ class AnalyticsService {
         
         // Apply date filters (if not already applied in query)
         if (filters.startDate) {
-          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as any).toDate();
+          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as Timestamp).toDate();
           if (docDate < filters.startDate) {
             return false;
           }
         }
         
         if (filters.endDate) {
-          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as any).toDate();
+          const docDate = data.timestamp instanceof Date ? data.timestamp : (data.timestamp as Timestamp).toDate();
           if (docDate > filters.endDate) {
             return false;
           }

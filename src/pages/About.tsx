@@ -72,10 +72,11 @@ const About: React.FC = () => {
           <AnimatedSection>
             <div className="flex justify-center mt-8 md:mt-12">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-xl">
-                <img 
-                  src="/profile.png" 
-                  alt="Osman Burak İntişah" 
+                <img
+                  src="/profile.png"
+                  alt="Osman Burak İntişah"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Download, ExternalLink, Github, MessageCircle } from 'lucide-react';
+import { ExternalLink, Github, MessageCircle } from 'lucide-react';
 
 const Home: React.FC = () => {
   // Featured projects data
@@ -247,10 +247,11 @@ const Home: React.FC = () => {
                 >
                   <div className="h-48 bg-gray-200 dark:bg-gray-700 relative overflow-hidden">
                     {project.imageUrl ? (
-                      <img 
-                        src={project.imageUrl} 
+                      <img
+                        src={project.imageUrl}
                         alt={project.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="flex items-center justify-center h-full">

@@ -6,11 +6,10 @@ import { createPhotoManifest, Photo } from '../utils/photoLoader';
 import { PHOTO_MANIFEST } from '../data/photoManifest';
 
 // Photo card component with optimized loading and responsive design
-const PhotoCard: React.FC<{ 
-  photo: Photo; 
-  onOpen: (photo: Photo) => void; 
-  index: number;
-}> = ({ photo, onOpen, index }) => {
+const PhotoCard: React.FC<{
+  photo: Photo;
+  onOpen: (photo: Photo) => void;
+}> = ({ photo, onOpen }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
@@ -293,10 +292,9 @@ const Photography: React.FC = () => {
               key={`${selectedFolder}-${photo.id}`} 
               delay={index * 0.05}
             >
-              <PhotoCard 
-                photo={photo} 
-                onOpen={openLightbox} 
-                index={index} 
+              <PhotoCard
+                photo={photo}
+                onOpen={openLightbox}
               />
             </AnimatedSection>
           ))}

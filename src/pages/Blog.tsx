@@ -11,39 +11,39 @@ interface BlogArticle {
   date?: string;
 }
 
+const blogArticles: BlogArticle[] = [
+  {
+    id: 4,
+    title: 'I Was Using Claude Code All Wrong: From Chatbot to Autonomous Engineering Team',
+    url: 'https://medium.com/@burak.intisah/i-was-using-claude-code-all-wrong-from-chatbot-to-autonomous-engineering-team-61bfb2e9575c',
+    summary: 'My journey from using AI as a simple chatbot to building an autonomous engineering workflow—discover how Claude Code transformed my development process with real-world examples and practical insights.',
+    tag: 'AI & Development',
+  },
+  {
+    id: 1,
+    title: 'TDD and BDD: Different Focuses, Same Goal — High-Quality Software',
+    url: 'https://medium.com/@burak.intisah/tdd-and-bdd-different-focuses-same-goal-high-quality-software-7ef529f9d3dc',
+    summary: 'Choosing between test-driven development and behavior-driven development—with histories, pros/cons, key differences, and best practices—helps teams deliver higher-quality software.',
+    tag: 'Software Development',
+  },
+  {
+    id: 2,
+    title: 'What Is Optimistic Nihilism?',
+    url: 'https://medium.com/@burak.intisah/what-is-optimistic-nihilism-600c4abaa999',
+    summary: 'An introduction to optimistic nihilism, explaining how embracing life\'s impermanence can reduce stress, foster freedom, and still allow us to find joy and purpose.',
+    tag: 'Philosophy',
+  },
+  {
+    id: 3,
+    title: 'What Is Rhetoric? How to Improve Your Rhetorical Skills?',
+    url: 'https://medium.com/@burak.intisah/what-is-rhetoric-how-to-improve-your-rhetorical-skills-89f42e0b4ee4',
+    summary: 'A concise guide to the art of persuasion—covering ethos, logos, pathos, common rhetorical devices, and practical tips to hone your writing and speaking.',
+    tag: 'Communication',
+  },
+];
+
 const Blog: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
-
-  const blogArticles: BlogArticle[] = [
-    {
-      id: 4,
-      title: 'I Was Using Claude Code All Wrong: From Chatbot to Autonomous Engineering Team',
-      url: 'https://medium.com/@burak.intisah/i-was-using-claude-code-all-wrong-from-chatbot-to-autonomous-engineering-team-61bfb2e9575c',
-      summary: 'My journey from using AI as a simple chatbot to building an autonomous engineering workflow—discover how Claude Code transformed my development process with real-world examples and practical insights.',
-      tag: 'AI & Development',
-    },
-    {
-      id: 1,
-      title: 'TDD and BDD: Different Focuses, Same Goal — High-Quality Software',
-      url: 'https://medium.com/@burak.intisah/tdd-and-bdd-different-focuses-same-goal-high-quality-software-7ef529f9d3dc',
-      summary: 'Choosing between test-driven development and behavior-driven development—with histories, pros/cons, key differences, and best practices—helps teams deliver higher-quality software.',
-      tag: 'Software Development',
-    },
-    {
-      id: 2,
-      title: 'What Is Optimistic Nihilism?',
-      url: 'https://medium.com/@burak.intisah/what-is-optimistic-nihilism-600c4abaa999',
-      summary: 'An introduction to optimistic nihilism, explaining how embracing life\'s impermanence can reduce stress, foster freedom, and still allow us to find joy and purpose.',
-      tag: 'Philosophy',
-    },
-    {
-      id: 3,
-      title: 'What Is Rhetoric? How to Improve Your Rhetorical Skills?',
-      url: 'https://medium.com/@burak.intisah/what-is-rhetoric-how-to-improve-your-rhetorical-skills-89f42e0b4ee4',
-      summary: 'A concise guide to the art of persuasion—covering ethos, logos, pathos, common rhetorical devices, and practical tips to hone your writing and speaking.',
-      tag: 'Communication',
-    },
-  ];
 
   // Get all unique tags from articles
   const allTags = useMemo(() => {
@@ -52,7 +52,7 @@ const Blog: React.FC = () => {
       tags.add(article.tag);
     });
     return ['All', ...Array.from(tags).sort()];
-  }, [blogArticles]);
+  }, []);
 
   // Filter articles based on selected filter
   const filteredArticles = useMemo(() => {
@@ -60,7 +60,7 @@ const Blog: React.FC = () => {
       return blogArticles;
     }
     return blogArticles.filter(article => article.tag === selectedFilter);
-  }, [blogArticles, selectedFilter]);
+  }, [selectedFilter]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">

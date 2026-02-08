@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { AnalyticsStats, VisitorData } from '../services/analytics';
+import { AnalyticsStats } from '../services/analytics';
 import { analyticsService } from '../services/analytics';
-import { BarChart3, Users, Eye, Globe, Monitor, Calendar, MapPin, Clock } from 'lucide-react';
+import { BarChart3, Users, Eye, Globe, Monitor, MapPin, Clock } from 'lucide-react';
 import AdminAuth from '../components/AdminAuth';
 import DataManagement from '../components/DataManagement';
+import { formatTimestamp } from '../utils/formatters';
 
 const AnalyticsContent: React.FC = () => {
   const [stats, setStats] = useState<AnalyticsStats | null>(null);
@@ -13,6 +14,7 @@ const AnalyticsContent: React.FC = () => {
 
   useEffect(() => {
     loadAnalytics();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRange]);
 
   const loadAnalytics = async () => {
@@ -32,21 +34,6 @@ const AnalyticsContent: React.FC = () => {
   const handleDataDeleted = () => {
     // Refresh analytics data after deletion
     loadAnalytics();
-  };
-
-  const formatDate = (timestamp: any) => {
-    if (!timestamp) return 'Unknown';
-    
-    let date: Date;
-    if (timestamp.toDate) {
-      date = timestamp.toDate();
-    } else if (timestamp instanceof Date) {
-      date = timestamp;
-    } else {
-      date = new Date(timestamp);
-    }
-    
-    return date.toLocaleString();
   };
 
   const StatCard: React.FC<{ title: string; value: number; icon: React.ReactNode; color: string }> = ({
@@ -259,7 +246,7 @@ const AnalyticsContent: React.FC = () => {
                 {stats.recentVisitors.slice(0, 20).map((visitor, index) => (
                   <tr key={visitor.id || index} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                      {formatDate(visitor.timestamp)}
+                      {formatTimestamp(visitor.timestamp)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                       {visitor.city && visitor.country ? `${visitor.city}, ${visitor.country}` : visitor.country || 'Unknown'}

@@ -13,71 +13,71 @@ interface Article {
   tags: string[];
 }
 
+const articles: Article[] = [
+  {
+    id: 1,
+    title: 'Building Resilient Systems with Circuit Breakers',
+    author: 'Martin Fowler',
+    source: 'martinfowler.com',
+    url: 'https://martinfowler.com/bliki/CircuitBreaker.html',
+    likedDate: '2025-06-01',
+    excerpt: 'The basic idea behind the circuit breaker is very simple. You wrap a protected function call in a circuit breaker object, which monitors for failures...',
+    tags: ['System Design', 'Patterns']
+  },
+  {
+    id: 2,
+    title: 'Microservices: A Definition of This New Architectural Term',
+    author: 'James Lewis & Martin Fowler',
+    source: 'martinfowler.com',
+    url: 'https://martinfowler.com/articles/microservices.html',
+    likedDate: '2025-06-01',
+    excerpt: 'The term "Microservice Architecture" has sprung up over the last few years to describe a particular way of designing software applications as suites of independently deployable services...',
+    tags: ['Microservices', 'Architecture']
+  },
+  {
+    id: 3,
+    title: 'Clean Architecture: A Craftsman\'s Guide to Software Structure',
+    author: 'Robert C. Martin',
+    source: 'blog.cleancoder.com',
+    url: 'https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html',
+    likedDate: '2025-06-01',
+    excerpt: 'Over the last several years we\'ve seen a whole range of ideas regarding the architecture of systems. These include: Hexagonal Architecture, Onion Architecture, Screaming Architecture...',
+    tags: ['Clean Code', 'Architecture']
+  },
+  {
+    id: 4,
+    title: 'Event Sourcing: Capturing All Changes to an Application State',
+    author: 'Greg Young',
+    source: 'eventstore.com',
+    url: 'https://eventstore.com/blog/what-is-event-sourcing',
+    likedDate: '2025-06-01',
+    excerpt: 'Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states...',
+    tags: ['Event Sourcing', 'Architecture']
+  },
+  {
+    id: 5,
+    title: 'The Twelve-Factor App',
+    author: 'Adam Wiggins',
+    source: '12factor.net',
+    url: 'https://12factor.net/',
+    likedDate: '2024-05-23',
+    excerpt: 'A methodology for building software-as-a-service apps that use declarative formats for setup automation, have a clean contract with the underlying operating system...',
+    tags: ['DevOps', 'Best Practices']
+  },
+];
+
 const ReadingList: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  const articles: Article[] = [
-    {
-      id: 1,
-      title: 'Building Resilient Systems with Circuit Breakers',
-      author: 'Martin Fowler',
-      source: 'martinfowler.com',
-      url: 'https://martinfowler.com/bliki/CircuitBreaker.html',
-      likedDate: '2025-06-01',
-      excerpt: 'The basic idea behind the circuit breaker is very simple. You wrap a protected function call in a circuit breaker object, which monitors for failures...',
-      tags: ['System Design', 'Patterns']
-    },
-    {
-      id: 2,
-      title: 'Microservices: A Definition of This New Architectural Term',
-      author: 'James Lewis & Martin Fowler',
-      source: 'martinfowler.com',
-      url: 'https://martinfowler.com/articles/microservices.html',
-      likedDate: '2025-06-01',
-      excerpt: 'The term "Microservice Architecture" has sprung up over the last few years to describe a particular way of designing software applications as suites of independently deployable services...',
-      tags: ['Microservices', 'Architecture']
-    },
-    {
-      id: 3,
-      title: 'Clean Architecture: A Craftsman\'s Guide to Software Structure',
-      author: 'Robert C. Martin',
-      source: 'blog.cleancoder.com',
-      url: 'https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html',
-      likedDate: '2025-06-01',
-      excerpt: 'Over the last several years we\'ve seen a whole range of ideas regarding the architecture of systems. These include: Hexagonal Architecture, Onion Architecture, Screaming Architecture...',
-      tags: ['Clean Code', 'Architecture']
-    },
-    {
-      id: 4,
-      title: 'Event Sourcing: Capturing All Changes to an Application State',
-      author: 'Greg Young',
-      source: 'eventstore.com',
-      url: 'https://eventstore.com/blog/what-is-event-sourcing',
-      likedDate: '2025-06-01',
-      excerpt: 'Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states...',
-      tags: ['Event Sourcing', 'Architecture']
-    },
-    {
-      id: 5,
-      title: 'The Twelve-Factor App',
-      author: 'Adam Wiggins',
-      source: '12factor.net',
-      url: 'https://12factor.net/',
-      likedDate: '2024-05-23',
-      excerpt: 'A methodology for building software-as-a-service apps that use declarative formats for setup automation, have a clean contract with the underlying operating system...',
-      tags: ['DevOps', 'Best Practices']
-    },
-  ];
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     articles.forEach(article => article.tags.forEach(tag => tags.add(tag)));
     return Array.from(tags).sort();
-  }, [articles]);
+  }, []);
 
   const filteredAndSortedArticles = useMemo(() => {
-    let filtered = articles.filter(article => {
+    const filtered = articles.filter(article => {
       const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => article.tags.includes(tag));
       const searchMatch = searchQuery === '' || 
         article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -96,7 +96,7 @@ const ReadingList: React.FC = () => {
     });
 
     return filtered;
-  }, [articles, selectedTags, searchQuery]);
+  }, [selectedTags, searchQuery]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags(prev => 
