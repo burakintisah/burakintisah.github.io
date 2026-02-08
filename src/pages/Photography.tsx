@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { X } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
-import { createPhotoManifest, Photo } from '../utils/photoLoader';
+import { createPhotoManifest, Photo, getWebpUrl } from '../utils/photoLoader';
 import { PHOTO_MANIFEST } from '../data/photoManifest';
 
 // Photo card component with optimized loading and responsive design
@@ -73,21 +73,26 @@ const PhotoCard: React.FC<{
       
       {/* Main image */}
       {!imageError && (
-        <img 
-          src={photo.url} 
-          alt={photo.alt}
-          loading="lazy"
-          decoding="async"
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-          style={{ 
-            imageRendering: 'auto',
-            filter: imageLoaded ? 'none' : 'blur(5px)'
-          }}
-        />
+        <picture>
+          {getWebpUrl(photo.url) && (
+            <source srcSet={getWebpUrl(photo.url)} type="image/webp" />
+          )}
+          <img
+            src={photo.url}
+            alt={photo.alt}
+            loading="lazy"
+            decoding="async"
+            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            style={{
+              imageRendering: 'auto',
+              filter: imageLoaded ? 'none' : 'blur(5px)'
+            }}
+          />
+        </picture>
       )}
       
       {/* Hover overlay */}
@@ -167,11 +172,16 @@ const Lightbox: React.FC<{
       className="max-w-4xl max-h-[90vh] relative"
       onClick={(e) => e.stopPropagation()}
     >
-      <img 
-        src={photo.url} 
-        alt={photo.alt} 
-        className="max-w-full max-h-[90vh] object-contain rounded-lg"
-      />
+      <picture>
+        {getWebpUrl(photo.url) && (
+          <source srcSet={getWebpUrl(photo.url)} type="image/webp" />
+        )}
+        <img
+          src={photo.url}
+          alt={photo.alt}
+          className="max-w-full max-h-[90vh] object-contain rounded-lg"
+        />
+      </picture>
       <div className="text-white text-center mt-4">
         <p className="text-lg font-medium">{photo.alt}</p>
         <p className="text-sm text-gray-300 mt-1">{photo.folder}</p>

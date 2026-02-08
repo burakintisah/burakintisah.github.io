@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
+import { getWebpUrl } from '../utils/photoLoader';
 import { ExternalLink, Github, MessageCircle } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -20,7 +21,7 @@ const Home: React.FC = () => {
       title: 'FlowerGarden',
       description: 'A full-stack online flower shop with a React frontend and SQL-based backend supporting browsing, cart, and checkout.',
       tags: ['React', 'SQL', 'Node.js'],
-      imageUrl: '/projects/photos/flowergarden.png',
+      imageUrl: '/projects/photos/flowergarden.jpg',
       githubUrl: 'https://github.com/burakintisah/flowergarden',
       liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
     },
@@ -247,12 +248,17 @@ const Home: React.FC = () => {
                 >
                   <div className="h-48 bg-gray-200 dark:bg-gray-700 relative overflow-hidden">
                     {project.imageUrl ? (
-                      <img
-                        src={project.imageUrl}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
+                      <picture>
+                        {getWebpUrl(project.imageUrl) && (
+                          <source srcSet={getWebpUrl(project.imageUrl)} type="image/webp" />
+                        )}
+                        <img
+                          src={project.imageUrl}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </picture>
                     ) : (
                       <div className="flex items-center justify-center h-full">
                         <div className="text-gray-400 dark:text-gray-500 text-4xl">📁</div>

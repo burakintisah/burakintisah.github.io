@@ -52,6 +52,13 @@ export const loadImageDimensions = (url: string): Promise<{width: number, height
   });
 };
 
+// Helper to get WebP URL from original image URL
+export const getWebpUrl = (url: string): string => {
+  // istanbul-trendyol-campus-outside has no WebP (it was larger)
+  if (url.includes('istanbul-trendyol-campus-outside')) return '';
+  return url.replace(/\.(jpe?g|png)$/i, '.webp');
+};
+
 // Main function to dynamically load photos
 // Note: This requires you to manually list your photos since we can't scan directories in the browser
 export const createPhotoManifest = (photoFiles: Record<string, string[]>): Photo[] => {

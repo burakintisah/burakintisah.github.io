@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
+import { getWebpUrl } from '../utils/photoLoader';
 
 interface Project {
   id: number;
@@ -32,22 +33,26 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
           )}
           
           {/* Actual image with better loading attributes */}
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            loading="lazy"
-            decoding="async"
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageError(true)}
-            style={{ 
-              imageRendering: 'auto',
-              // Add a slight blur while loading for better perceived performance
-              filter: imageLoaded ? 'none' : 'blur(5px)'
-            }}
-          />
+          <picture>
+            {project.imageUrl && getWebpUrl(project.imageUrl) && (
+              <source srcSet={getWebpUrl(project.imageUrl)} type="image/webp" />
+            )}
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+              className={`w-full h-full object-cover transition-opacity duration-500 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageError(true)}
+              style={{
+                imageRendering: 'auto',
+                filter: imageLoaded ? 'none' : 'blur(5px)'
+              }}
+            />
+          </picture>
         </>
       ) : (
         // Fallback for missing or failed images
@@ -78,7 +83,7 @@ const projects: Project[] = [
     title: 'FlowerGarden',
     description: 'A full-stack online flower shop with a React frontend and SQL-based backend supporting browsing, cart, and checkout.',
     tags: ['React', 'SQL', 'Node.js'],
-    imageUrl: '/projects/photos/flowergarden.png',
+    imageUrl: '/projects/photos/flowergarden.jpg',
     githubUrl: 'https://github.com/burakintisah/flowergarden',
     liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
   },
@@ -87,14 +92,14 @@ const projects: Project[] = [
     title: 'Prelude',
     description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
     tags: ['Python'],
-    imageUrl: '/projects/photos/prelude.png',
+    imageUrl: '/projects/photos/prelude.jpg',
   },
   {
     id: 4,
     title: 'Fast Denouncement',
     description: 'An Android app in Java using Google Maps for anonymous GPS-based reporting, backed by a Node.js server, which won 1st place at the Bilkent hackathon.',
     tags: ['Android', 'Java', 'Node.js'],
-    imageUrl: '/projects/photos/bilkent-2018-hackathon.png',
+    imageUrl: '/projects/photos/bilkent-2018-hackathon.jpg',
     liveUrl: 'http://bilnews.bilkent.edu.tr/cs-students-win-mobile-application-marathon/',
   },
   {
@@ -102,7 +107,7 @@ const projects: Project[] = [
     title: 'Dark Room',
     description: 'An Android puzzle game in Java that uses audio and vibration clues to escape, which won 1st place at the national BTK game marathon.',
     tags: ['Android', 'Java'],
-    imageUrl: '/projects/photos/btk-2018-hackathon.png',
+    imageUrl: '/projects/photos/btk-2018-hackathon.jpg',
     liveUrl: 'https://www.btk.gov.tr/haberler/btk-oyun-maratonu-tamamlandi',
   },
 ];
