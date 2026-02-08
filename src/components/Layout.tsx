@@ -64,7 +64,7 @@ const Layout: React.FC = () => {
     { icon: <Linkedin className="h-5 w-5" />, href: 'https://linkedin.com/in/burakintisah', label: 'LinkedIn' },
     { icon: <Instagram className="h-5 w-5" />, href: 'https://www.instagram.com/osman.burakk', label: 'Instagram' },
     { icon: <Mail className="h-5 w-5" />, href: 'mailto:burak.intisah@gmail.com', label: 'Email' },
-    { icon: <FileText className="h-5 w-5" />, href: '/burak_intisah_resume.pdf', label: 'Download Resume' },
+    { icon: <FileText className="h-5 w-5" />, href: '/burak_intisah_resume.pdf', label: 'Download Resume', download: true },
   ];
 
   const isActive = (path: string) => {
@@ -377,8 +377,10 @@ const Layout: React.FC = () => {
           <a
             key={index}
             href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(link.download
+              ? { download: 'burak_intisah_resume.pdf' }
+              : { target: '_blank', rel: 'noopener noreferrer' }
+            )}
             className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
             aria-label={link.label}
           >

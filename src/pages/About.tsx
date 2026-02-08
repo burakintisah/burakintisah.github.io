@@ -57,10 +57,9 @@ const About: React.FC = () => {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="flex items-center justify-center gap-3 mb-16">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">About Me</h1>
-          <a 
+          <a
             href="/burak_intisah_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="burak_intisah_resume.pdf"
             className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
             aria-label="Download Resume"
           >
