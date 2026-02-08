@@ -44,28 +44,23 @@ const PhotoCard: React.FC<{
 
   return (
     <div
-      className="relative cursor-pointer overflow-hidden rounded-lg group break-inside-avoid mb-4 transition-transform duration-300 hover:scale-[1.02]"
+      className="relative cursor-pointer overflow-hidden rounded-xl group break-inside-avoid mb-4 transition-all duration-300 hover:shadow-card-hover"
       onClick={() => onOpen(photo)}
       style={{ height: `${cardHeight}px` }}
     >
       {/* Loading skeleton */}
       {!imageLoaded && !imageError && (
-        <div className="w-full h-full bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 dark:from-gray-600 dark:via-gray-700 dark:to-gray-600 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-          <div className="flex items-center justify-center h-full">
-            <div className="text-gray-400 dark:text-gray-500 text-sm font-medium">
-              Loading photo...
-            </div>
-          </div>
+        <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 relative overflow-hidden rounded-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
         </div>
       )}
 
       {/* Error state */}
       {imageError && (
-        <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <div className="w-full h-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center rounded-xl">
           <div className="text-center">
-            <div className="text-gray-400 dark:text-gray-500 text-4xl mb-2">📷</div>
-            <div className="text-gray-500 dark:text-gray-400 text-xs">
+            <div className="text-gray-300 dark:text-gray-600 text-4xl mb-2">📷</div>
+            <div className="text-gray-400 dark:text-gray-500 text-xs">
               Failed to load photo
             </div>
           </div>
@@ -96,9 +91,9 @@ const PhotoCard: React.FC<{
         </picture>
       )}
 
-      {/* Hover overlay */}
+      {/* Hover overlay with tags */}
       {imageLoaded && !imageError && (
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-end">
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-end">
           <div className="w-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex flex-wrap gap-1">
               {photo.tags.slice(0, 3).map((tag) => (
@@ -108,13 +103,13 @@ const PhotoCard: React.FC<{
                     e.stopPropagation();
                     onTagClick(tag);
                   }}
-                  className="bg-black bg-opacity-60 text-white px-2 py-0.5 rounded text-xs font-medium hover:bg-primary-600 transition-colors cursor-pointer"
+                  className="bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors cursor-pointer"
                 >
                   {tag}
                 </span>
               ))}
               {photo.tags.length > 3 && (
-                <span className="bg-black bg-opacity-60 text-white px-2 py-0.5 rounded text-xs font-medium">
+                <span className="bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded-lg text-xs font-medium">
                   +{photo.tags.length - 3}
                 </span>
               )}
@@ -129,7 +124,7 @@ const PhotoCard: React.FC<{
           {photo.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="bg-black bg-opacity-50 text-white px-2 py-0.5 rounded text-xs font-medium"
+              className="bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-xs font-medium"
             >
               {tag}
             </span>
@@ -150,8 +145,8 @@ const TagButton: React.FC<{
     onClick={onClick}
     className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
       isSelected
-        ? 'bg-primary-600 text-white dark:bg-primary-500 shadow-lg transform scale-105'
-        : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 hover:scale-105'
+        ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md'
+        : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600'
     }`}
   >
     {tag}
@@ -165,15 +160,15 @@ const Lightbox: React.FC<{
   onTagClick: (tag: string) => void;
 }> = ({ photo, onClose, onTagClick }) => (
   <div
-    className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+    className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
     onClick={onClose}
   >
     <button
-      className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+      className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-10 p-2 rounded-lg hover:bg-white/10"
       onClick={onClose}
       aria-label="Close lightbox"
     >
-      <X className="h-8 w-8" />
+      <X className="h-6 w-6" />
     </button>
     <div
       className="max-w-4xl max-h-[90vh] relative"
@@ -186,11 +181,11 @@ const Lightbox: React.FC<{
         <img
           src={photo.url}
           alt={photo.alt}
-          className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          className="max-w-full max-h-[90vh] object-contain rounded-xl"
         />
       </picture>
       <div className="text-white text-center mt-4">
-        <p className="text-lg font-medium">{photo.alt}</p>
+        <p className="text-base font-medium">{photo.alt}</p>
         <div className="flex flex-wrap justify-center gap-2 mt-2">
           {photo.tags.map((tag) => (
             <button
@@ -199,7 +194,7 @@ const Lightbox: React.FC<{
                 onClose();
                 onTagClick(tag);
               }}
-              className="bg-white bg-opacity-20 hover:bg-primary-600 text-white px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
+              className="bg-white/20 backdrop-blur-sm hover:bg-primary-600 text-white px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
             >
               {tag}
             </button>
@@ -296,15 +291,18 @@ const Photography: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         {/* Header section */}
         <AnimatedSection>
-          <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-            Photography
-          </h1>
-          <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-            Snapshots from my travels, hobbies, and life moments
-          </p>
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Gallery</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-4">
+              Photography
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Snapshots from my travels, hobbies, and life moments
+            </p>
+          </div>
         </AnimatedSection>
 
         {/* Tag filter buttons */}
@@ -333,7 +331,7 @@ const Photography: React.FC = () => {
 
         {/* Photo count */}
         <AnimatedSection delay={0.2}>
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-500 mb-8">
             {displayedPhotos.length} photo{displayedPhotos.length !== 1 ? 's' : ''}
             {selectedTags.length > 0 && ` matching: ${selectedTags.join(' + ')}`}
           </p>
@@ -362,7 +360,7 @@ const Photography: React.FC = () => {
         {displayedPhotos.length === 0 && (
           <AnimatedSection delay={0.3}>
             <div className="text-center py-16">
-              <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">📷</div>
+              <div className="text-gray-300 dark:text-gray-600 text-6xl mb-4">📷</div>
               <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">
                 No photos found matching: {selectedTags.join(' + ')}
               </p>

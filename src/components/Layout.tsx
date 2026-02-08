@@ -14,16 +14,16 @@ const Layout: React.FC = () => {
     return false;
   });
   const location = useLocation();
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   useEffect(() => {
     setMobileMenuOpen(false);
     setAboutDropdownOpen(false);
@@ -83,57 +83,65 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 flex flex-col">
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white dark:bg-gray-800 shadow-sm dark:shadow-gray-700/50 border-b border-gray-200 dark:border-gray-700' : 'bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50'
+          isScrolled
+            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.3)] border-b border-gray-100 dark:border-gray-800'
+            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-transparent'
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-2 text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">
-              <Terminal className="h-6 w-6" />
-              <span className="font-semibold text-lg">Burak Intisah</span>
+            <Link to="/" className="flex items-center space-x-2.5 group">
+              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/40 transition-colors">
+                <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <span className="font-semibold text-lg text-gray-900 dark:text-white tracking-tight">Burak Intisah</span>
             </Link>
-            
+
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8 items-center">
+            <nav className="hidden md:flex items-center space-x-1">
               <Link
                 to="/"
-                className={`text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                  isActive('/') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive('/')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 Home
               </Link>
-              
+
               {/* About Dropdown */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setAboutDropdownOpen(true)}
                 onMouseLeave={() => setAboutDropdownOpen(false)}
               >
                 <button
-                  className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                    isAboutSectionActive() ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isAboutSectionActive()
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
                 >
                   <span>About</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                
+
                 {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-700/50 border border-gray-200 dark:border-gray-700 transition-all duration-200 ${
+                <div className={`absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-elevated dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-gray-700 transition-all duration-200 ${
                   aboutDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
-                  <div className="py-2">
+                  <div className="p-1.5">
                     {aboutDropdownItems.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className={`block px-4 py-2 text-sm transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                          isActive(item.path) 
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                            : 'text-gray-700 dark:text-gray-300'
+                        className={`block px-3 py-2 text-sm rounded-lg transition-all duration-150 ${
+                          isActive(item.path)
+                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 font-medium'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                       >
                         {item.name}
@@ -147,8 +155,10 @@ const Layout: React.FC = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                    isActive(link.path) ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(link.path)
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
                 >
                   {link.name}
@@ -156,33 +166,35 @@ const Layout: React.FC = () => {
               ))}
 
               {/* Content Dropdown */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setContentDropdownOpen(true)}
                 onMouseLeave={() => setContentDropdownOpen(false)}
               >
                 <button
-                  className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                    isContentSectionActive() ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isContentSectionActive()
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
                 >
                   <span>Content</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${contentDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${contentDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                
+
                 {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-700/50 border border-gray-200 dark:border-gray-700 transition-all duration-200 ${
+                <div className={`absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-elevated dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-gray-700 transition-all duration-200 ${
                   contentDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
-                  <div className="py-2">
+                  <div className="p-1.5">
                     {contentDropdownItems.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className={`block px-4 py-2 text-sm transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                          isActive(item.path) 
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                            : 'text-gray-700 dark:text-gray-300'
+                        className={`block px-3 py-2 text-sm rounded-lg transition-all duration-150 ${
+                          isActive(item.path)
+                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 font-medium'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                       >
                         {item.name}
@@ -194,8 +206,10 @@ const Layout: React.FC = () => {
 
               <Link
                 to="/photography"
-                className={`text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                  isActive('/photography') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive('/photography')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 Photography
@@ -203,109 +217,122 @@ const Layout: React.FC = () => {
 
               <Link
                 to="/connect"
-                className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                  isActive('/connect') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'
+                className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive('/connect')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 <Users className="h-4 w-4" />
                 <span>Connect</span>
               </Link>
 
+              <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
+
               <button
                 onClick={toggleDarkMode}
-                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
             </nav>
-            
+
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-4">
+            <div className="md:hidden flex items-center space-x-2">
               <button
                 onClick={toggleDarkMode}
-                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
-              <button 
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+              <button
+                className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
           </div>
         </div>
       </header>
-      
-      {/* Mobile Navigation Overlay - Moved outside header */}
+
+      {/* Mobile Navigation Overlay */}
       <div className={`fixed inset-0 z-[70] md:hidden transition-all duration-300 ${
         mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}>
         {/* Backdrop */}
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setMobileMenuOpen(false)}
         />
-        
+
         {/* Side Panel */}
-        <nav className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out z-[75] ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
+        <nav className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-elevated transform transition-transform duration-300 ease-in-out z-[75]`}>
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-            <div className="flex items-center space-x-2">
-              <Terminal className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+          <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800">
+            <div className="flex items-center space-x-2.5">
+              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50">
+                <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+              </div>
               <span className="font-semibold text-lg text-gray-900 dark:text-white">Menu</span>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-lg text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 
           {/* Navigation Content */}
           <div className="flex flex-col h-full overflow-y-auto">
-            <div className="flex-1 px-6 py-6 space-y-6">
+            <div className="flex-1 px-4 py-6 space-y-1">
               <Link
                 to="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block text-lg font-medium transition-colors ${
-                  isActive('/') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
+                className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  isActive('/')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 Home
               </Link>
-              
+
               {/* About Section */}
-              <div className="space-y-3">
-                <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">About</div>
-                {aboutDropdownItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block text-lg font-medium transition-colors ml-4 ${
-                      isActive(item.path) ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <div className="pt-4 pb-2">
+                <div className="px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">About</div>
               </div>
-              
+              {aboutDropdownItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ml-2 ${
+                    isActive(item.path)
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
               {/* Main Navigation */}
+              <div className="pt-4 pb-2">
+                <div className="px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Work</div>
+              </div>
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block text-lg font-medium transition-colors ${
-                    isActive(link.path) ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
+                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                    isActive(link.path)
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
                 >
                   {link.name}
@@ -313,27 +340,33 @@ const Layout: React.FC = () => {
               ))}
 
               {/* Content Section */}
-              <div className="space-y-3">
-                <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Content</div>
-                {contentDropdownItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block text-lg font-medium transition-colors ml-4 ${
-                      isActive(item.path) ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <div className="pt-4 pb-2">
+                <div className="px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Content</div>
               </div>
+              {contentDropdownItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ml-2 ${
+                    isActive(item.path)
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              <div className="pt-2"></div>
 
               <Link
                 to="/photography"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block text-lg font-medium transition-colors ${
-                  isActive('/photography') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
+                className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  isActive('/photography')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 Photography
@@ -342,8 +375,10 @@ const Layout: React.FC = () => {
               <Link
                 to="/connect"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center space-x-3 text-lg font-medium transition-colors ${
-                  isActive('/connect') ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
+                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  isActive('/connect')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 <Users className="h-5 w-5" />
@@ -351,14 +386,14 @@ const Layout: React.FC = () => {
               </Link>
             </div>
 
-            {/* Footer with Dark Mode Toggle */}
-            <div className="p-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Footer */}
+            <div className="p-4 border-t border-gray-100 dark:border-gray-800">
               <button
                 onClick={toggleDarkMode}
-                className="flex items-center space-x-3 w-full p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               >
                 {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                <span className="text-lg font-medium">
+                <span className="text-base font-medium">
                   {darkMode ? 'Light Mode' : 'Dark Mode'}
                 </span>
               </button>
@@ -366,13 +401,13 @@ const Layout: React.FC = () => {
           </div>
         </nav>
       </div>
-      
+
       <main className="flex-1 pt-16">
         <Outlet />
       </main>
 
-      {/* Social Links */}
-      <div className="fixed bottom-8 right-8 flex flex-col space-y-4 z-50">
+      {/* Social Links - Glass card sidebar */}
+      <div className="fixed bottom-8 right-6 z-50 hidden sm:flex flex-col items-center space-y-1 p-2 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 shadow-card">
         {socialLinks.map((link, index) => (
           <a
             key={index}
@@ -381,23 +416,25 @@ const Layout: React.FC = () => {
               ? { download: 'burak_intisah_resume.pdf' }
               : { target: '_blank', rel: 'noopener noreferrer' }
             )}
-            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            className="p-2.5 rounded-xl text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/40 transition-all duration-200"
             aria-label={link.label}
           >
             {link.icon}
           </a>
         ))}
       </div>
-      
-      <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="container mx-auto px-4 py-8 md:py-12">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+
+      <footer className="border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center space-x-2.5">
+              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50">
+                <Terminal className="h-4 w-4 text-primary-600 dark:text-primary-400" />
+              </div>
               <span className="font-medium text-gray-800 dark:text-gray-200">Burak Intisah</span>
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} Osman Burak Intisah
+            <div className="text-sm text-gray-400 dark:text-gray-500">
+              &copy; {new Date().getFullYear()} Osman Burak Intisah
             </div>
           </div>
         </div>

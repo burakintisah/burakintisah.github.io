@@ -19,20 +19,17 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="h-48 bg-gray-200 dark:bg-gray-700 relative overflow-hidden">
+    <div className="h-48 bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
       {project.imageUrl && !imageError ? (
         <>
-          {/* Loading skeleton with better animation */}
+          {/* Loading skeleton */}
           {!imageLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 dark:from-gray-600 dark:via-gray-700 dark:to-gray-600 animate-pulse">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-              <div className="flex items-center justify-center h-full">
-                <div className="text-gray-400 dark:text-gray-500 text-sm font-medium">Loading image...</div>
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 animate-pulse">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
             </div>
           )}
-          
-          {/* Actual image with better loading attributes */}
+
+          {/* Actual image */}
           <picture>
             {project.imageUrl && getWebpUrl(project.imageUrl) && (
               <source srcSet={getWebpUrl(project.imageUrl)} type="image/webp" />
@@ -42,7 +39,7 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
               alt={project.title}
               loading="lazy"
               decoding="async"
-              className={`w-full h-full object-cover transition-opacity duration-500 ${
+              className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               onLoad={() => setImageLoaded(true)}
@@ -56,10 +53,10 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
         </>
       ) : (
         // Fallback for missing or failed images
-        <div className="h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+        <div className="h-full flex items-center justify-center bg-gray-50 dark:bg-gray-800">
           <div className="text-center">
-            <div className="text-gray-400 dark:text-gray-500 text-4xl mb-2">📁</div>
-            <div className="text-gray-500 dark:text-gray-400 text-xs">
+            <div className="text-gray-300 dark:text-gray-600 text-4xl mb-2">📁</div>
+            <div className="text-gray-400 dark:text-gray-500 text-xs">
               {imageError ? 'Failed to load' : 'No image'}
             </div>
           </div>
@@ -134,23 +131,25 @@ const Projects: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         <AnimatedSection>
-          <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">Projects</h1>
-          <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12"></p>
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Portfolio</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">Projects</h1>
+          </div>
         </AnimatedSection>
-        
+
         {/* Filter Buttons */}
         <AnimatedSection delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
             {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedFilter(tag)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   selectedFilter === tag
-                    ? 'bg-primary-600 text-white dark:bg-primary-500 shadow-lg'
-                    : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500'
+                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md'
+                    : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600'
                 }`}
               >
                 {tag}
@@ -158,53 +157,53 @@ const Projects: React.FC = () => {
             ))}
           </div>
         </AnimatedSection>
-        
+
         {/* Project Count */}
         <AnimatedSection delay={0.2}>
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
-            {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} 
+          <p className="text-center text-sm text-gray-500 dark:text-gray-500 mb-8">
+            {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''}
             {selectedFilter !== 'All' && ` with ${selectedFilter}`}
           </p>
         </AnimatedSection>
-        
+
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
             <AnimatedSection key={`${selectedFilter}-${project.id}`} delay={index * 0.1}>
-              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg dark:hover:shadow-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:translate-y-[-4px] h-full flex flex-col">
+              <div className="card-accent bg-white dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/50 rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col group">
                 {/* Project Image */}
                 <ProjectImage project={project} />
-                
+
                 {/* Project Content */}
                 <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{project.title}</h3>
-                  
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
+
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-200 dark:border-gray-600"
+                        className="px-2.5 py-0.5 bg-primary-50 dark:bg-primary-950/30 text-primary-700 dark:text-primary-300 text-xs font-medium rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  
+
                   {/* Description */}
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow leading-relaxed whitespace-pre-line">{project.description}</p>
-                  
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-5 flex-grow leading-relaxed whitespace-pre-line">{project.description}</p>
+
                   {/* Action Buttons */}
-                  <div className="flex gap-3 mt-auto">
+                  <div className="flex gap-2 mt-auto">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-500 dark:hover:border-primary-500 transition-all duration-200 text-sm"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-950/30 transition-all duration-200"
                       >
                         <Github className="h-4 w-4" />
-                        View on GitHub
+                        GitHub
                       </a>
                     )}
                     {project.liveUrl && (
@@ -212,15 +211,15 @@ const Projects: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-500 dark:hover:border-primary-500 transition-all duration-200 text-sm"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-950/30 transition-all duration-200"
                       >
                         <ExternalLink className="h-4 w-4" />
-                        View Website
+                        Live
                       </a>
                     )}
                     {!project.githubUrl && !project.liveUrl && (
-                      <div className="text-gray-500 dark:text-gray-400 text-sm italic">
-                        Repository private
+                      <div className="text-gray-400 dark:text-gray-500 text-sm">
+                        Private
                       </div>
                     )}
                   </div>
@@ -229,7 +228,7 @@ const Projects: React.FC = () => {
             </AnimatedSection>
           ))}
         </div>
-        
+
         {/* Empty State */}
         {filteredProjects.length === 0 && (
           <AnimatedSection delay={0.3}>
