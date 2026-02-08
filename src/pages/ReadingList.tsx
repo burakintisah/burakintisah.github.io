@@ -79,12 +79,12 @@ const ReadingList: React.FC = () => {
   const filteredAndSortedArticles = useMemo(() => {
     const filtered = articles.filter(article => {
       const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => article.tags.includes(tag));
-      const searchMatch = searchQuery === '' || 
+      const searchMatch = searchQuery === '' ||
         article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.source.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-      
+
       return tagMatch && searchMatch;
     });
 
@@ -99,8 +99,8 @@ const ReadingList: React.FC = () => {
   }, [selectedTags, searchQuery]);
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
+    setSelectedTags(prev =>
+      prev.includes(tag)
         ? prev.filter(t => t !== tag)
         : [...prev, tag]
     );
@@ -122,22 +122,24 @@ const ReadingList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         <AnimatedSection>
-          <div className="flex items-center justify-center mb-4">
-            <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white">Reading List</h1>
-            <Heart className="ml-3 h-8 w-8 text-red-500 fill-current" />
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Curated</p>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">Reading List</h1>
+            </div>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Articles and resources I've found valuable and worth sharing
+            </p>
           </div>
-          <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-16">
-            Articles and resources I've found valuable and worth sharing
-          </p>
         </AnimatedSection>
 
         {/* Filters and Search */}
         <AnimatedSection>
-          <div className="max-w-4xl mx-auto mb-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="max-w-3xl mx-auto mb-10">
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200/80 dark:border-gray-700/50">
               {/* Search Bar */}
               <div className="mb-6">
                 <div className="relative">
@@ -147,14 +149,14 @@ const ReadingList: React.FC = () => {
                     placeholder="Search articles, authors, or sources..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-all text-sm"
                   />
                 </div>
               </div>
 
               {/* Tag Filter */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-2">
                   Filter by Tags
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -162,10 +164,10 @@ const ReadingList: React.FC = () => {
                     <button
                       key={tag}
                       onClick={() => toggleTag(tag)}
-                      className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                         selectedTags.includes(tag)
-                          ? 'bg-primary-600 text-white'
-                          : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                          ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-sm'
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                       }`}
                     >
                       {tag}
@@ -176,13 +178,13 @@ const ReadingList: React.FC = () => {
 
               {/* Active Filters & Clear */}
               {hasActiveFilters && (
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-600">
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200/80 dark:border-gray-700/50">
+                  <div className="text-sm text-gray-500 dark:text-gray-500">
                     Showing {filteredAndSortedArticles.length} of {articles.length} articles
                   </div>
                   <button
                     onClick={clearFilters}
-                    className="flex items-center text-sm text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
+                    className="flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
                   >
                     <X className="h-4 w-4 mr-1" />
                     Clear Filters
@@ -192,29 +194,29 @@ const ReadingList: React.FC = () => {
             </div>
           </div>
         </AnimatedSection>
-        
+
         {/* Articles List */}
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-4">
             {filteredAndSortedArticles.map((article, index) => (
               <AnimatedSection key={article.id} delay={index * 0.1}>
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md dark:hover:shadow-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800/50 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-200/80 dark:border-gray-700/50 hover:-translate-y-0.5">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start justify-between gap-4 mb-3">
                     <div className="flex-1">
-                      <a 
+                      <a
                         href={article.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block group"
                       >
-                        <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
                           {article.title}
                         </h2>
                       </a>
-                      <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-500">
                         <span className="font-medium">{article.author}</span>
-                        <span className="mx-2">•</span>
+                        <span className="mx-2">·</span>
                         <span>{article.source}</span>
                       </div>
                     </div>
@@ -222,24 +224,24 @@ const ReadingList: React.FC = () => {
                       href={article.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                      className="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg hover:bg-primary-50 dark:hover:bg-primary-950/30"
                       aria-label={`Read ${article.title}`}
                     >
-                      <ExternalLink className="h-5 w-5" />
+                      <ExternalLink className="h-4 w-4" />
                     </a>
                   </div>
 
                   {/* Excerpt */}
-                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                     {article.excerpt}
                   </p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {article.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 cursor-pointer hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 dark:bg-primary-950/30 text-primary-700 dark:text-primary-300 cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors"
                         onClick={() => toggleTag(tag)}
                       >
                         <Tag className="h-3 w-3 mr-1" />
@@ -249,8 +251,8 @@ const ReadingList: React.FC = () => {
                   </div>
 
                   {/* Liked Date */}
-                  <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <Heart className="h-3 w-3 mr-1 text-red-500 fill-current" />
+                  <div className="flex items-center text-xs text-gray-400 dark:text-gray-500 pt-3 border-t border-gray-100 dark:border-gray-700/50">
+                    <Heart className="h-3 w-3 mr-1.5 text-red-400 fill-current" />
                     <span>Liked on {formatDate(article.likedDate)}</span>
                   </div>
                 </div>
@@ -261,17 +263,17 @@ const ReadingList: React.FC = () => {
           {filteredAndSortedArticles.length === 0 && (
             <AnimatedSection>
               <div className="text-center py-12">
-                <BookOpen className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <BookOpen className="h-12 w-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   No articles found
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
                   Try adjusting your filters or search terms.
                 </p>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
-                    className="text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
+                    className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
                   >
                     Clear all filters
                   </button>
@@ -279,17 +281,19 @@ const ReadingList: React.FC = () => {
               </div>
             </AnimatedSection>
           )}
-          
-          {/* Add Article CTA */}
-          <AnimatedSection delay={0.8} className="mt-16 bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm border-l-4 border-primary-500 dark:border-primary-400">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Curated with Care</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              This reading list is manually curated with articles, papers, and resources that I've found genuinely valuable. 
-              Each piece is selected for its insights, practical value, or thought-provoking ideas.
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Have a suggestion for an article that should be here? Feel free to reach out and share it with me.
-            </p>
+
+          {/* Curated Note */}
+          <AnimatedSection delay={0.8} className="mt-16">
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-8 border-l-[3px] border-l-primary-500 border border-gray-200/80 dark:border-gray-700/50">
+              <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white tracking-tight">Curated with Care</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
+                This reading list is manually curated with articles, papers, and resources that I've found genuinely valuable.
+                Each piece is selected for its insights, practical value, or thought-provoking ideas.
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-500">
+                Have a suggestion for an article that should be here? Feel free to reach out and share it with me.
+              </p>
+            </div>
           </AnimatedSection>
         </div>
       </div>

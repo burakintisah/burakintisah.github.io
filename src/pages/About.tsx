@@ -45,81 +45,99 @@ const About: React.FC = () => {
   ];
 
   const allSkills = skillCategories.slice(1).flatMap(category => category.skills);
-  
+
   const [selectedCategory, setSelectedCategory] = useState("All");
-  
-  const filteredSkills = selectedCategory === "All" 
-    ? allSkills 
+
+  const filteredSkills = selectedCategory === "All"
+    ? allSkills
     : skillCategories.find(cat => cat.name === selectedCategory)?.skills || [];
 
   return (
     <div className="bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="flex items-center justify-center gap-3 mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">About Me</h1>
-          <a
-            href="/burak_intisah_resume.pdf"
-            download="burak_intisah_resume.pdf"
-            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            aria-label="Download Resume"
-          >
-            <FileText className="h-5 w-5" />
-          </a>
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
+        {/* Page Header */}
+        <div className="text-center mb-16">
+          <AnimatedSection>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider">Background</p>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">About Me</h1>
+            <div className="mt-4 flex justify-center">
+              <a
+                href="/burak_intisah_resume.pdf"
+                download="burak_intisah_resume.pdf"
+                className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                aria-label="Download Resume"
+              >
+                <FileText className="h-4 w-4" />
+                <span>Download Resume</span>
+              </a>
+            </div>
+          </AnimatedSection>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
           <AnimatedSection>
             <div className="flex justify-center mt-8 md:mt-12">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-xl">
-                <img
-                  src="/profile.png"
-                  alt="Osman Burak İntişah"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-400 via-primary-500 to-purple-500 opacity-20 blur-sm"></div>
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-[3px] border-white dark:border-gray-800 shadow-elevated">
+                  <img
+                    src="/profile.png"
+                    alt="Osman Burak İntişah"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection delay={0.2}>
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-3">Early Career</h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I ranked 1,045th out of more than three million candidates on the national university entrance exam, which allowed me to receive a full scholarship to Bilkent University, where I discovered my passion for backend systems. After graduating with a Computer Science degree and a 3.48 CGPA, I joined Trendyol as a Backend Engineer. I’m now with Cherry Technologies, where I develop and maintain payment processing systems and end-to-end banking workflows for thousands of customers each day.
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 tracking-tight">Early Career</h2>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                I ranked 1,045th out of more than three million candidates on the national university entrance exam, which allowed me to receive a full scholarship to Bilkent University, where I discovered my passion for backend systems. After graduating with a Computer Science degree and a 3.48 CGPA, I joined Trendyol as a Backend Engineer. I'm now with Cherry Technologies, where I develop and maintain payment processing systems and end-to-end banking workflows for thousands of customers each day.
                 </p>
               </div>
-              
+
               <div>
-                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-3">Key Skills</h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 tracking-tight">Key Skills</h2>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 My expertise lies in designing and implementing high-performance backend systems with a focus on scalability and reliability. I specialize in distributed systems, database optimization, and writing clean, maintainable code.
                 </p>
               </div>
-              
+
               <div>
-                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-3">Technical Interests</h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I’m passionate about microservice architecture, event-driven systems, performance optimization, and AI-driven workflow automation within backend environments.
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 tracking-tight">Technical Interests</h2>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                I'm passionate about microservice architecture, event-driven systems, performance optimization, and AI-driven workflow automation within backend environments.
                 </p>
               </div>
             </div>
           </AnimatedSection>
         </div>
-        
+
+        {/* Section divider */}
+        <div className="section-divider max-w-lg mx-auto mb-16" />
+
         <AnimatedSection delay={0.4}>
-          <h2 className="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-8">Technical Toolkit</h2>
-          
+          <div className="text-center mb-10">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Expertise</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Technical Toolkit</h2>
+          </div>
+
           {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
             {skillCategories.map((category) => (
               <button
                 key={category.name}
                 onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   selectedCategory === category.name
-                    ? 'bg-primary-600 text-white dark:bg-primary-500'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 {category.name}
@@ -128,13 +146,13 @@ const About: React.FC = () => {
           </div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {filteredSkills.map((skill, index) => (
-              <div 
+              <div
                 key={`${selectedCategory}-${index}`}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 rounded-lg flex flex-col items-center text-center hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 shadow-sm hover:shadow-md group"
+                className="bg-white dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/50 p-4 rounded-xl flex flex-col items-center text-center hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-200 shadow-card hover:shadow-card-hover group"
               >
-                <div className="w-12 h-12 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 dark:text-gray-500 mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                   {skill.icon}
                 </div>
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
@@ -142,12 +160,13 @@ const About: React.FC = () => {
             ))}
           </div>
         </AnimatedSection>
-        
-        <AnimatedSection delay={0.6} className="mt-16 text-center max-w-xl mx-auto py-8 border-t border-b border-gray-100 dark:border-gray-700">
-          <p className="text-lg italic text-gray-600 dark:text-gray-400">
-            “The best way to predict the future is to invent it.”
+
+        <AnimatedSection delay={0.6} className="mt-20 text-center max-w-xl mx-auto py-10">
+          <div className="section-divider mb-10" />
+          <p className="text-lg italic text-gray-500 dark:text-gray-400 leading-relaxed">
+            "The best way to predict the future is to invent it."
           </p>
-          <p className="mt-2 text-gray-500 dark:text-gray-500">— Alan Kay</p>
+          <p className="mt-3 text-sm text-gray-400 dark:text-gray-500 font-medium">— Alan Kay</p>
         </AnimatedSection>
       </div>
     </div>

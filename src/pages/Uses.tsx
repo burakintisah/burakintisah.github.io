@@ -93,16 +93,55 @@ const Uses: React.FC = () => {
     }
   ];
 
+  const renderItemCard = (item: typeof hardwareItems[0], index: number) => (
+    <div
+      key={index}
+      className="card-accent bg-white dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group"
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-primary-50 dark:bg-primary-950/30 text-primary-600 dark:text-primary-400 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/40 transition-colors">
+            {item.icon}
+          </div>
+          <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+            {item.name}
+          </h3>
+        </div>
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          aria-label={`Visit ${item.name} website`}
+        >
+          <ExternalLink className="h-4 w-4" />
+        </a>
+      </div>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+        {item.description}
+      </p>
+      <div className="border-t border-gray-100 dark:border-gray-700/50 pt-3">
+        <p className="text-xs text-gray-500 dark:text-gray-500 font-medium mb-1">
+          What I use it for:
+        </p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          {item.usage}
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Setup</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-4">
               What I Use
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A curated list of the hardware and software tools that power my daily workflow and help me build amazing things.
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              A curated list of the hardware and software tools that power my daily workflow.
             </p>
           </div>
         </AnimatedSection>
@@ -110,97 +149,32 @@ const Uses: React.FC = () => {
         {/* Hardware Section */}
         <AnimatedSection>
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-              <Monitor className="h-8 w-8 text-primary-600 dark:text-primary-400 mr-3" />
-              Hardware
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {hardwareItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg dark:hover:shadow-gray-700/50 transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="text-primary-600 dark:text-primary-400 mr-3">
-                        {item.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
-                      aria-label={`Visit ${item.name} website`}
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                    </a>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {item.description}
-                  </p>
-                  <div className="border-t border-gray-200 dark:border-gray-600 pt-4">
-                    <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                      What I use it for:
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                      {item.usage}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2 rounded-lg bg-primary-50 dark:bg-primary-950/30">
+                <Monitor className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Hardware</h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {hardwareItems.map(renderItemCard)}
             </div>
           </div>
         </AnimatedSection>
 
+        {/* Section divider */}
+        <div className="section-divider max-w-lg mx-auto mb-16" />
+
         {/* Software Section */}
         <AnimatedSection>
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-              <Code className="h-8 w-8 text-primary-600 dark:text-primary-400 mr-3" />
-              Software
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {softwareItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg dark:hover:shadow-gray-700/50 transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="text-primary-600 dark:text-primary-400 mr-3">
-                        {item.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
-                      aria-label={`Visit ${item.name} website`}
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                    </a>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {item.description}
-                  </p>
-                  <div className="border-t border-gray-200 dark:border-gray-600 pt-4">
-                    <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                      What I use it for:
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                      {item.usage}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2 rounded-lg bg-primary-50 dark:bg-primary-950/30">
+                <Code className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Software</h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {softwareItems.map(renderItemCard)}
             </div>
           </div>
         </AnimatedSection>
@@ -208,9 +182,9 @@ const Uses: React.FC = () => {
         {/* Footer Note */}
         <AnimatedSection>
           <div className="mt-16 text-center">
-            <div className="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-8 border border-primary-200 dark:border-primary-800">
-              <p className="text-primary-700 dark:text-primary-300 text-lg">
-                This setup evolves constantly as I discover new tools and optimize my workflow. 
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-8 border border-gray-200/80 dark:border-gray-700/50 max-w-3xl mx-auto">
+              <p className="text-gray-600 dark:text-gray-400">
+                This setup evolves constantly as I discover new tools and optimize my workflow.
                 Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
               </p>
             </div>
@@ -221,4 +195,4 @@ const Uses: React.FC = () => {
   );
 };
 
-export default Uses; 
+export default Uses;

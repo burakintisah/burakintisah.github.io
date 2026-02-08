@@ -26,11 +26,11 @@ interface ExperienceItemProps extends Experience {
 
 const YearMarker: React.FC<YearMarkerProps> = ({ year, index }) => {
   return (
-    <AnimatedSection 
+    <AnimatedSection
       delay={index * 0.05}
       className="relative flex items-center justify-center mb-6"
     >
-      <div className="bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-semibold shadow-sm border border-primary-200 dark:border-primary-800">
+      <div className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-1.5 rounded-full text-sm font-semibold shadow-md">
         {year}
       </div>
     </AnimatedSection>
@@ -58,53 +58,53 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   };
 
   return (
-    <AnimatedSection 
+    <AnimatedSection
       delay={index * 0.1}
       className={`relative flex items-center justify-center mb-8 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
     >
       {/* Timeline dot */}
-      <div className="absolute left-3 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-primary-600 dark:bg-primary-500 border-4 border-white dark:border-gray-800 z-10 hover:bg-primary-500 dark:hover:bg-primary-400 transition-colors" />
-      
+      <div className="absolute left-3 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary-600 dark:bg-primary-400 border-[3px] border-white dark:border-gray-900 z-10 shadow-sm" />
+
       {/* Content card */}
-      <div 
-        className={`relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg dark:hover:shadow-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 rounded-lg p-6 md:w-5/12 ml-10 md:ml-0 ${
+      <div
+        className={`card-accent relative bg-white dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/50 shadow-card hover:shadow-card-hover transition-all duration-300 rounded-xl p-6 md:w-5/12 ml-10 md:ml-0 ${
           isLeft ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'
         }`}
       >
-        <div className="flex items-start justify-between mb-2">
+        <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{company}</h3>
-            <h4 className="text-lg font-medium text-primary-600 dark:text-primary-400 mb-1">{role}</h4>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">{company}</h3>
+            <h4 className="text-base font-medium text-primary-600 dark:text-primary-400">{role}</h4>
           </div>
           {hasPhotos && (
             <button
               onClick={handlePhotoClick}
-              className="ml-4 p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="ml-3 p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg hover:bg-primary-50 dark:hover:bg-primary-950/30"
               title={`View ${company} photos`}
             >
-              <Camera className="h-5 w-5" />
+              <Camera className="h-4 w-4" />
             </button>
           )}
         </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{period} · {location}</p>
-        
+        <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">{period} · {location}</p>
+
         {/* Achievements */}
         <ul className="space-y-2 mb-4">
           {achievements.map((achievement, i) => (
-            <li key={i} className="text-gray-700 dark:text-gray-300 flex items-start">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary-500 dark:bg-primary-400 mt-2 mr-2 flex-shrink-0"></span>
+            <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start leading-relaxed">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary-400 dark:bg-primary-500 mt-2 mr-2.5 flex-shrink-0"></span>
               {achievement}
             </li>
           ))}
         </ul>
 
         {/* Tech Stack */}
-        <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
-          <div className="flex flex-wrap gap-1">
+        <div className="border-t border-gray-100 dark:border-gray-700/50 pt-4">
+          <div className="flex flex-wrap gap-1.5">
             {techStack.map((tech, i) => (
-              <span 
+              <span
                 key={i}
-                className="px-2 py-1 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded text-xs"
+                className="px-2.5 py-0.5 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-xs font-medium"
               >
                 {tech}
               </span>
@@ -195,7 +195,7 @@ const Experience: React.FC = () => {
     if (item.type === 'year') {
       return <YearMarker key={`year-${item.year}`} year={item.year} index={index} />;
     }
-    
+
     return (
       <ExperienceItem
         key={`exp-${item.expIndex}`}
@@ -221,14 +221,19 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">My Experience</h1>
-        
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Career</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">My Experience</h1>
+          </div>
+        </AnimatedSection>
+
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute top-0 bottom-0 left-3 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-gray-200 dark:bg-gray-700 z-0"></div>
-          
+          <div className="absolute top-0 bottom-0 left-3 md:left-1/2 transform md:-translate-x-1/2 w-px bg-gray-200 dark:bg-gray-800 z-0"></div>
+
           {/* Timeline items */}
           <div className="relative z-10">
             {timelineData.map(renderTimelineItem)}

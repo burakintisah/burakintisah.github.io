@@ -63,26 +63,29 @@ const Blog: React.FC = () => {
   }, [selectedFilter]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         <AnimatedSection>
-          <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">Blog</h1>
-          <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-            I write about stuff.
-          </p>
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Writing</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-4">Blog</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              I write about stuff.
+            </p>
+          </div>
         </AnimatedSection>
-        
+
         {/* Filter Buttons */}
         <AnimatedSection delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
             {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedFilter(tag)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   selectedFilter === tag
-                    ? 'bg-primary-600 text-white dark:bg-primary-500 shadow-lg'
-                    : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500'
+                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md'
+                    : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600'
                 }`}
               >
                 {tag}
@@ -90,18 +93,18 @@ const Blog: React.FC = () => {
             ))}
           </div>
         </AnimatedSection>
-        
+
         {/* Article Count */}
         <AnimatedSection delay={0.2}>
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
-            {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} 
+          <p className="text-center text-sm text-gray-500 dark:text-gray-500 mb-8">
+            {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''}
             {selectedFilter !== 'All' && ` tagged with ${selectedFilter}`}
           </p>
         </AnimatedSection>
-        
+
         {/* Single column layout for articles */}
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-4">
             {filteredArticles.map((article, index) => (
               <AnimatedSection key={`${selectedFilter}-${article.id}`} delay={index * 0.1}>
                 <a
@@ -110,32 +113,29 @@ const Blog: React.FC = () => {
                   rel="noopener noreferrer"
                   className="block group"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md dark:hover:shadow-gray-700 transition-all duration-300 cursor-pointer hover:translate-y-[-2px]">
-                    {/* Date (omitted as requested since blog dates not available) */}
-                    
-                    {/* Title */}
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors flex items-center gap-2">
-                      {article.title}
-                      <ExternalLink className="h-5 w-5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    </h2>
-                    
-                    {/* Tag */}
-                    <div className="mb-4">
-                      <span className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium rounded-full">
-                        {article.tag}
-                      </span>
+                  <div className="bg-white dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-0.5">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="mb-3">
+                          <span className="inline-block px-2.5 py-0.5 bg-primary-50 dark:bg-primary-950/30 text-primary-700 dark:text-primary-300 text-xs font-medium rounded-full">
+                            {article.tag}
+                          </span>
+                        </div>
+                        <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
+                          {article.title}
+                        </h2>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                          {article.summary}
+                        </p>
+                      </div>
+                      <ExternalLink className="h-4 w-4 text-gray-400 dark:text-gray-500 group-hover:text-primary-500 transition-colors flex-shrink-0 mt-1" />
                     </div>
-                    
-                    {/* Summary */}
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {article.summary}
-                    </p>
                   </div>
                 </a>
               </AnimatedSection>
             ))}
           </div>
-          
+
           {/* Empty State */}
           {filteredArticles.length === 0 && (
             <AnimatedSection delay={0.3}>
