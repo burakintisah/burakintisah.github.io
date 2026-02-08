@@ -57,10 +57,9 @@ const About: React.FC = () => {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="flex items-center justify-center gap-3 mb-16">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">About Me</h1>
-          <a 
+          <a
             href="/burak_intisah_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="burak_intisah_resume.pdf"
             className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
             aria-label="Download Resume"
           >
@@ -72,10 +71,11 @@ const About: React.FC = () => {
           <AnimatedSection>
             <div className="flex justify-center mt-8 md:mt-12">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-xl">
-                <img 
-                  src="/profile.png" 
-                  alt="Osman Burak İntişah" 
+                <img
+                  src="/profile.png"
+                  alt="Osman Burak İntişah"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>

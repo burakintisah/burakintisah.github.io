@@ -116,6 +116,10 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   );
 };
 
+type TimelineItem =
+  | { type: 'year'; year: string }
+  | { type: 'experience'; experience: Experience; expIndex: number };
+
 const Experience: React.FC = () => {
   const experiences: Experience[] = [
     {
@@ -187,7 +191,7 @@ const Experience: React.FC = () => {
 
   const currentYear = new Date().getFullYear().toString();
 
-  const renderTimelineItem = (item: any, index: number) => {
+  const renderTimelineItem = (item: TimelineItem, index: number) => {
     if (item.type === 'year') {
       return <YearMarker key={`year-${item.year}`} year={item.year} index={index} />;
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { analyticsService, DeleteFilters, VisitorData } from '../services/analytics';
 import { Trash2, Eye, AlertTriangle, Calendar, MapPin, Monitor, Globe, FileText, Search } from 'lucide-react';
+import { formatTimestamp } from '../utils/formatters';
 
 interface DataManagementProps {
   onDataDeleted: () => void;
@@ -36,21 +37,6 @@ const DataManagement: React.FC<DataManagementProps> = ({ onDataDeleted }) => {
     } finally {
       setLoadingOptions(false);
     }
-  };
-
-  const formatDate = (timestamp: any) => {
-    if (!timestamp) return 'Unknown';
-    
-    let date: Date;
-    if (timestamp.toDate) {
-      date = timestamp.toDate();
-    } else if (timestamp instanceof Date) {
-      date = timestamp;
-    } else {
-      date = new Date(timestamp);
-    }
-    
-    return date.toLocaleString();
   };
 
   const handlePreview = async () => {
@@ -138,20 +124,22 @@ const DataManagement: React.FC<DataManagementProps> = ({ onDataDeleted }) => {
       case 'ankara':
         setFilters({ city: 'Ankara' });
         break;
-      case 'today':
+      case 'today': {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const endOfToday = new Date();
         endOfToday.setHours(23, 59, 59, 999);
         setFilters({ startDate: today, endDate: endOfToday });
         break;
-      case 'last7days':
+      }
+      case 'last7days': {
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
         sevenDaysAgo.setHours(0, 0, 0, 0);
         const now = new Date();
         setFilters({ startDate: sevenDaysAgo, endDate: now });
         break;
+      }
       case 'desktop':
         setFilters({ deviceType: 'desktop' });
         break;
@@ -460,7 +448,7 @@ const DataManagement: React.FC<DataManagementProps> = ({ onDataDeleted }) => {
                   {preview.sampleData.map((visitor, index) => (
                     <tr key={visitor.id || index} className="text-sm">
                       <td className="px-4 py-2 text-gray-900 dark:text-gray-300">
-                        {formatDate(visitor.timestamp)}
+                        {formatTimestamp(visitor.timestamp)}
                       </td>
                       <td className="px-4 py-2 text-gray-900 dark:text-gray-300">
                         {visitor.page}

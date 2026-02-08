@@ -13,147 +13,147 @@ interface Book {
   coverImage: string;
 }
 
+const books: Book[] = [
+  {
+    id: 1,
+    title: 'Clean Code',
+    author: 'Robert C. Martin',
+    finishedDate: '2021-11-11',
+    rating: 5,
+    tags: ['Software Engineering'],
+    purchaseLink: 'https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882',
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1436202607i/3735293.jpg'
+  },
+  {
+    id: 2,
+    title: 'The Pragmatic Programmer',
+    author: 'David Thomas & Andrew Hunt',
+    finishedDate: '2025-05-05',
+    rating: 5,
+    tags: ['Software Engineering'],
+    purchaseLink: 'https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052',
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1401432508i/4099.jpg'
+  },
+  {
+    id: 3,
+    title: 'Atomic Habits',
+    author: 'James Clear',
+    finishedDate: '2021-12-12',
+    rating: 4,
+    tags: ['Psychology', 'Productivity'],
+    purchaseLink: 'https://amzn.eu/d/4N2HVVo',
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535115320i/40121378.jpg'
+  },
+  {
+    id: 4,
+    title: 'System Design Interview',
+    author: 'Alex Xu',
+    finishedDate: '2024-12-12',
+    rating: 4,
+    tags: ['System Design', 'Interview'],
+    purchaseLink: 'https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF',
+    coverImage: 'https://m.media-amazon.com/images/I/61CekcUc2EL._SL1360_.jpg'
+  },
+  {
+    id: 5,
+    title: 'Designing Data-Intensive Applications',
+    author: 'Martin Kleppmann',
+    finishedDate: '2025-03-03',
+    rating: 5,
+    tags: ['System Design'],
+    purchaseLink: 'https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321',
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1415816873i/23463279.jpg'
+  },
+  {
+    id: 6,
+    title: 'The Psychology of Money',
+    author: 'Morgan Housel',
+    finishedDate: '2025-04-04',
+    rating: 4,
+    tags: ['Finance', 'Psychology'],
+    purchaseLink: 'https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681',
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1581527774i/41881472.jpg'
+  },
+  {
+    id: 7,
+    title: 'Refactoring',
+    author: 'Martin Fowler',
+    finishedDate: '2023-07-10',
+    rating: 5,
+    tags: ['System Design'],
+    purchaseLink: 'https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Signature/dp/0134757599',
+    coverImage: 'https://martinfowler.com/books/refact2.jpg'
+  },
+  {
+    "id": 8,
+    "title": "Feel Good Productivity",
+    "author": "Ali Abdaal",
+    "finishedDate": "2025-06-05",
+    "rating": 4,
+    "tags": ["Productivity"],
+    "purchaseLink": "https://amzn.eu/d/c39PDT1",
+    "coverImage": "https://m.media-amazon.com/images/I/71GcwzanFpL._SL1500_.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Safsatalar Ansiklopedisi: Akıl Yürüt(eme)menin Kısa Tarih",
+    "author": "Immanuel Tolstoyevski",
+    "finishedDate": "2023-06-15",
+    "rating": 4,
+    "tags": ["Philosophy"],
+    "purchaseLink": "https://amzn.eu/d/1uvZqgd",
+    "coverImage": "https://m.media-amazon.com/images/I/51rXD3zV0nL._SL1000_.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Nutuk",
+    "author": "Mustafa Kemal Atatürk",
+    "finishedDate": "2021-05-23",
+    "rating": 5,
+    "tags": ["History", "Politics"],
+    "purchaseLink": "https://amzn.eu/d/d44COT0",
+    "coverImage": "https://m.media-amazon.com/images/I/81cpZF7r0BL._SL1500_.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+    "author": "Eric Evans",
+    "finishedDate": "2025-04-12",
+    "rating": 5,
+    "tags": ["System Design"],
+    "purchaseLink": "https://amzn.eu/d/1evP4wz",
+    "coverImage": "https://m.media-amazon.com/images/I/81ykBjVaUjL._SL1500_.jpg"
+  },
+  {
+    "id": 12,
+    "title": "Sofi'nin Dünyası",
+    "author": "Jostein Gaarder",
+    "finishedDate": "2023-03-08",
+    "rating": 5,
+    "tags": ["Philosophy"],
+    "purchaseLink": "https://amzn.eu/d/7NAFuZ0",
+    "coverImage": "https://upload.wikimedia.org/wikipedia/tr/1/1e/Sofie%27nin_D%C3%BCnyas%C4%B1.jpg"
+  }
+];
+
 const Bookshelf: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const books: Book[] = [
-    {
-      id: 1,
-      title: 'Clean Code',
-      author: 'Robert C. Martin',
-      finishedDate: '2021-11-11',
-      rating: 5,
-      tags: ['Software Engineering'],
-      purchaseLink: 'https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1436202607i/3735293.jpg'
-    },
-    {
-      id: 2,
-      title: 'The Pragmatic Programmer',
-      author: 'David Thomas & Andrew Hunt',
-      finishedDate: '2025-05-05',
-      rating: 5,
-      tags: ['Software Engineering'],
-      purchaseLink: 'https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1401432508i/4099.jpg'
-    },
-    {
-      id: 3,
-      title: 'Atomic Habits',
-      author: 'James Clear',
-      finishedDate: '2021-12-12',
-      rating: 4,
-      tags: ['Psychology', 'Productivity'],
-      purchaseLink: 'https://amzn.eu/d/4N2HVVo',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535115320i/40121378.jpg'
-    },
-    {
-      id: 4,
-      title: 'System Design Interview',
-      author: 'Alex Xu',
-      finishedDate: '2024-12-12',
-      rating: 4,
-      tags: ['System Design', 'Interview'],
-      purchaseLink: 'https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF',
-      coverImage: 'https://m.media-amazon.com/images/I/61CekcUc2EL._SL1360_.jpg'
-    },
-    {
-      id: 5,
-      title: 'Designing Data-Intensive Applications',
-      author: 'Martin Kleppmann',
-      finishedDate: '2025-03-03',
-      rating: 5,
-      tags: ['System Design'],
-      purchaseLink: 'https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1415816873i/23463279.jpg'
-    },
-    {
-      id: 6,
-      title: 'The Psychology of Money',
-      author: 'Morgan Housel',
-      finishedDate: '2025-04-04',
-      rating: 4,
-      tags: ['Finance', 'Psychology'],
-      purchaseLink: 'https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1581527774i/41881472.jpg'
-    },
-    {
-      id: 7,
-      title: 'Refactoring',
-      author: 'Martin Fowler',
-      finishedDate: '2023-07-10',
-      rating: 5,
-      tags: ['System Design'],
-      purchaseLink: 'https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Signature/dp/0134757599',
-      coverImage: 'https://martinfowler.com/books/refact2.jpg'
-    },
-    {
-      "id": 8,
-      "title": "Feel Good Productivity",
-      "author": "Ali Abdaal",
-      "finishedDate": "2025-06-05",
-      "rating": 4,
-      "tags": ["Productivity"],
-      "purchaseLink": "https://amzn.eu/d/c39PDT1",
-      "coverImage": "https://m.media-amazon.com/images/I/71GcwzanFpL._SL1500_.jpg"
-    },
-    {
-      "id": 9,
-      "title": "Safsatalar Ansiklopedisi: Akıl Yürüt(eme)menin Kısa Tarih",
-      "author": "Immanuel Tolstoyevski",
-      "finishedDate": "2023-06-15",
-      "rating": 4,
-      "tags": ["Philosophy"],
-      "purchaseLink": "https://amzn.eu/d/1uvZqgd",
-      "coverImage": "https://m.media-amazon.com/images/I/51rXD3zV0nL._SL1000_.jpg"
-    },
-    {
-      "id": 10,
-      "title": "Nutuk",
-      "author": "Mustafa Kemal Atatürk",
-      "finishedDate": "2021-05-23",
-      "rating": 5,
-      "tags": ["History", "Politics"],
-      "purchaseLink": "https://amzn.eu/d/d44COT0",
-      "coverImage": "https://m.media-amazon.com/images/I/81cpZF7r0BL._SL1500_.jpg"
-    },
-    {
-      "id": 11,
-      "title": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
-      "author": "Eric Evans",
-      "finishedDate": "2025-04-12",
-      "rating": 5,
-      "tags": ["System Design"],
-      "purchaseLink": "https://amzn.eu/d/1evP4wz",
-      "coverImage": "https://m.media-amazon.com/images/I/81ykBjVaUjL._SL1500_.jpg"
-    },
-    {
-      "id": 12,
-      "title": "Sofi'nin Dünyası",
-      "author": "Jostein Gaarder",
-      "finishedDate": "2023-03-08",
-      "rating": 5,
-      "tags": ["Philosophy"],
-      "purchaseLink": "https://amzn.eu/d/7NAFuZ0",
-      "coverImage": "https://upload.wikimedia.org/wikipedia/tr/1/1e/Sofie%27nin_D%C3%BCnyas%C4%B1.jpg"
-    }
-  ];
-
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     books.forEach(book => book.tags.forEach(tag => tags.add(tag)));
     return Array.from(tags).sort();
-  }, [books]);
+  }, []);
 
   const allYears = useMemo(() => {
     const years = new Set(books.map(book => new Date(book.finishedDate).getFullYear()));
     return Array.from(years).sort((a, b) => b - a);
-  }, [books]);
+  }, []);
 
   const filteredBooks = useMemo(() => {
-    let filtered = books.filter(book => {
+    const filtered = books.filter(book => {
       const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => book.tags.includes(tag));
       const finishedYear = new Date(book.finishedDate).getFullYear();
       const yearMatch = selectedYear === 'all' || finishedYear.toString() === selectedYear;
@@ -169,7 +169,7 @@ const Bookshelf: React.FC = () => {
     filtered.sort((a, b) => new Date(b.finishedDate).getTime() - new Date(a.finishedDate).getTime());
 
     return filtered;
-  }, [books, selectedTags, selectedYear, searchQuery]);
+  }, [selectedTags, selectedYear, searchQuery]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -317,6 +317,7 @@ const Bookshelf: React.FC = () => {
                     src={book.coverImage}
                     alt={`${book.title} cover`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';

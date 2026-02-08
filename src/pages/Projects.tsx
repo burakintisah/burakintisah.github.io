@@ -64,51 +64,51 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
   );
 };
 
+const projects: Project[] = [
+  {
+    id: 1,
+    title: 'URL Shortener',
+    description: 'A secure, serverless URL-shortening backend on AWS using Lambda, API Gateway, DynamoDB, Cognito, and CloudWatch.',
+    tags: ['AWS'],
+    imageUrl: '/projects/photos/url-shortener.png',
+    githubUrl: 'https://github.com/burakintisah/url-shortener',
+  },
+  {
+    id: 2,
+    title: 'FlowerGarden',
+    description: 'A full-stack online flower shop with a React frontend and SQL-based backend supporting browsing, cart, and checkout.',
+    tags: ['React', 'SQL', 'Node.js'],
+    imageUrl: '/projects/photos/flowergarden.png',
+    githubUrl: 'https://github.com/burakintisah/flowergarden',
+    liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
+  },
+  {
+    id: 3,
+    title: 'Prelude',
+    description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
+    tags: ['Python'],
+    imageUrl: '/projects/photos/prelude.png',
+  },
+  {
+    id: 4,
+    title: 'Fast Denouncement',
+    description: 'An Android app in Java using Google Maps for anonymous GPS-based reporting, backed by a Node.js server, which won 1st place at the Bilkent hackathon.',
+    tags: ['Android', 'Java', 'Node.js'],
+    imageUrl: '/projects/photos/bilkent-2018-hackathon.png',
+    liveUrl: 'http://bilnews.bilkent.edu.tr/cs-students-win-mobile-application-marathon/',
+  },
+  {
+    id: 5,
+    title: 'Dark Room',
+    description: 'An Android puzzle game in Java that uses audio and vibration clues to escape, which won 1st place at the national BTK game marathon.',
+    tags: ['Android', 'Java'],
+    imageUrl: '/projects/photos/btk-2018-hackathon.png',
+    liveUrl: 'https://www.btk.gov.tr/haberler/btk-oyun-maratonu-tamamlandi',
+  },
+];
+
 const Projects: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'URL Shortener',
-      description: 'A secure, serverless URL-shortening backend on AWS using Lambda, API Gateway, DynamoDB, Cognito, and CloudWatch.',
-      tags: ['AWS'],
-      imageUrl: '/projects/photos/url-shortener.png',
-      githubUrl: 'https://github.com/burakintisah/url-shortener',
-    },
-    {
-      id: 2,
-      title: 'FlowerGarden',
-      description: 'A full-stack online flower shop with a React frontend and SQL-based backend supporting browsing, cart, and checkout.',
-      tags: ['React', 'SQL', 'Node.js'],
-      imageUrl: '/projects/photos/flowergarden.png',
-      githubUrl: 'https://github.com/burakintisah/flowergarden',
-      liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
-    },
-    {
-      id: 3,
-      title: 'Prelude',
-      description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
-      tags: ['Python'],
-      imageUrl: '/projects/photos/prelude.png',
-    },
-    {
-      id: 4,
-      title: 'Fast Denouncement',
-      description: 'An Android app in Java using Google Maps for anonymous GPS-based reporting, backed by a Node.js server, which won 1st place at the Bilkent hackathon.',
-      tags: ['Android', 'Java', 'Node.js'],
-      imageUrl: '/projects/photos/bilkent-2018-hackathon.png',
-      liveUrl: 'http://bilnews.bilkent.edu.tr/cs-students-win-mobile-application-marathon/',
-    },
-    {
-      id: 5,
-      title: 'Dark Room',
-      description: 'An Android puzzle game in Java that uses audio and vibration clues to escape, which won 1st place at the national BTK game marathon.',
-      tags: ['Android', 'Java'],
-      imageUrl: '/projects/photos/btk-2018-hackathon.png',
-      liveUrl: 'https://www.btk.gov.tr/haberler/btk-oyun-maratonu-tamamlandi',
-    },
-  ];
 
   // Get all unique tags from projects
   const allTags = useMemo(() => {
@@ -117,7 +117,7 @@ const Projects: React.FC = () => {
       project.tags.forEach(tag => tags.add(tag));
     });
     return ['All', ...Array.from(tags).sort()];
-  }, [projects]);
+  }, []);
 
   // Filter projects based on selected filter
   const filteredProjects = useMemo(() => {
@@ -125,7 +125,7 @@ const Projects: React.FC = () => {
       return projects;
     }
     return projects.filter(project => project.tags.includes(selectedFilter));
-  }, [projects, selectedFilter]);
+  }, [selectedFilter]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">

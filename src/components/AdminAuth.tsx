@@ -11,7 +11,7 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ children }) => {
   const [error, setError] = useState('');
 
   // Simple admin password - in production, use proper authentication
-  const ADMIN_PASSWORD = 'root'; // Change this to your desired password
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'root';
 
   useEffect(() => {
     // Check if already authenticated in session

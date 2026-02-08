@@ -26,3 +26,13 @@ dist-ssr
 
 # PR description files (temporary, don't commit)
 .pr-*.md
+
+# Firebase
+.firebase/
+
+# Build cache
+*.tsbuildinfo
+.eslintcache
+
+# Coverage
+coverage/
