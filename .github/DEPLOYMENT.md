@@ -16,26 +16,18 @@ You need to set up the following secrets in your repository:
 
 **Navigate to**: `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
 
-### Firebase Configuration Secrets
+### Google Analytics Secret
 
 ```
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-### Where to Find These Values
+### Where to Find This Value
 
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select your project
-3. Go to **Project Settings** (⚙️ icon)
-4. Scroll to **Your apps** section
-5. Select your web app
-6. Copy the config values
+1. Go to [Google Analytics](https://analytics.google.com/)
+2. Select your property
+3. Go to **Admin** → **Data Streams** → **Web**
+4. Copy the **Measurement ID** (starts with `G-`)
 
 ## ⚙️ GitHub Pages Settings
 
@@ -138,7 +130,7 @@ After GitHub Actions is set up, you can:
 
 ### Deployment Fails
 
-1. **Check Secrets**: Ensure all Firebase secrets are set correctly
+1. **Check Secrets**: Ensure all required secrets are set correctly
 2. **Check Logs**: View GitHub Actions logs for detailed errors
 3. **Build Locally**: Test `npm run build` locally first
 

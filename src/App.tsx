@@ -4,7 +4,6 @@ import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
-import { useAnalytics } from './hooks/useAnalytics';
 
 // Lazy load non-critical pages for faster initial load
 const About = lazy(() => import('./pages/About'));
@@ -16,7 +15,6 @@ const Bookshelf = lazy(() => import('./pages/Bookshelf'));
 const Photography = lazy(() => import('./pages/Photography'));
 const ReadingList = lazy(() => import('./pages/ReadingList'));
 const Connect = lazy(() => import('./pages/Connect'));
-const Analytics = lazy(() => import('./pages/Analytics'));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
@@ -25,9 +23,6 @@ const PageLoader = () => (
 );
 
 function App() {
-  // Initialize analytics tracking
-  useAnalytics();
-
   return (
     <ErrorBoundary>
       <ScrollToTop />
@@ -43,7 +38,6 @@ function App() {
           <Route path="photography" element={<Suspense fallback={<PageLoader />}><Photography /></Suspense>} />
           <Route path="reading-list" element={<Suspense fallback={<PageLoader />}><ReadingList /></Suspense>} />
           <Route path="connect" element={<Suspense fallback={<PageLoader />}><Connect /></Suspense>} />
-          <Route path="analytics" element={<Suspense fallback={<PageLoader />}><Analytics /></Suspense>} />
         </Route>
       </Routes>
     </ErrorBoundary>
