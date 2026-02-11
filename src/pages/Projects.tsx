@@ -69,6 +69,14 @@ const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
 const projects: Project[] = [
   {
     id: 1,
+    title: 'Party Games',
+    description: 'Multiplayer browser games you can play with friends. Real-time interaction and fun — built for group entertainment!',
+    tags: ['React', 'Real-time'],
+    imageUrl: '/projects/photos/party-games.png',
+    liveUrl: 'https://games.burakintisah.com',
+  },
+  {
+    id: 2,
     title: 'URL Shortener',
     description: 'A secure, serverless URL-shortening backend on AWS using Lambda, API Gateway, DynamoDB, Cognito, and CloudWatch.',
     tags: ['AWS'],
@@ -76,7 +84,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/burakintisah/url-shortener',
   },
   {
-    id: 2,
+    id: 3,
     title: 'FlowerGarden',
     description: 'A full-stack online flower shop with a React frontend and SQL-based backend supporting browsing, cart, and checkout.',
     tags: ['React', 'SQL', 'Node.js'],
@@ -85,14 +93,14 @@ const projects: Project[] = [
     liveUrl: 'https://burakintisah.github.io/FlowerGarden/',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Prelude',
     description: 'A computer-vision prototype that uses YOLOv4 to detect fabric defects with a Python/Kivy interface for image input and report generation.',
     tags: ['Python'],
     imageUrl: '/projects/photos/prelude.jpg',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Fast Denouncement',
     description: 'An Android app in Java using Google Maps for anonymous GPS-based reporting, backed by a Node.js server, which won 1st place at the Bilkent hackathon.',
     tags: ['Android', 'Java', 'Node.js'],
@@ -100,7 +108,7 @@ const projects: Project[] = [
     liveUrl: 'http://bilnews.bilkent.edu.tr/cs-students-win-mobile-application-marathon/',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Dark Room',
     description: 'An Android puzzle game in Java that uses audio and vibration clues to escape, which won 1st place at the national BTK game marathon.',
     tags: ['Android', 'Java'],

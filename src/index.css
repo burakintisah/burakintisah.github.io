@@ -97,3 +97,21 @@ html {
 .dark .section-divider {
   background: linear-gradient(90deg, transparent, rgba(129, 140, 248, 0.2), transparent);
 }
+
+/* Hero grid pattern for dark terminal section */
+.bg-grid-hero {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
