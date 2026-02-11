@@ -44,7 +44,7 @@ const featuredProjects = [
     title: 'Party Games',
     description: 'Arkadaşlarla birlikte oynayabileceğin multiplayer tarayıcı oyunları. Gerçek zamanlı etkileşim ve eğlence!',
     tags: ['Games', 'Real-time'],
-    imageUrl: '/projects/photos/party-games.png',
+    imageUrl: '/projects/photos/party-games.svg',
     liveUrl: 'https://games.burakintisah.com',
   },
   {
@@ -112,13 +112,13 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section - Terminal Inspired */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-950 pt-16 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900 pt-16 overflow-hidden">
         {/* Animated grid background */}
-        <div className="absolute inset-0 bg-grid-hero opacity-20" />
+        <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-hero opacity-40 dark:opacity-20" />
 
         {/* Gradient accents */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary-500/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-500/6 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary-300/15 dark:bg-primary-500/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-300/10 dark:bg-emerald-500/6 rounded-full blur-[100px]" />
 
         <div className="container mx-auto px-4 z-10 w-full">
           <div className="max-w-5xl mx-auto">
@@ -130,10 +130,10 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="lg:col-span-3 order-2 lg:order-1"
               >
-                {/* Terminal Window */}
-                <div className="rounded-xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-sm shadow-2xl overflow-hidden">
+                {/* Terminal Window - always dark themed */}
+                <div className="rounded-xl border border-gray-200 dark:border-gray-700/50 bg-gray-900 shadow-elevated dark:shadow-2xl overflow-hidden">
                   {/* Terminal Header */}
-                  <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-700/50 bg-gray-800/50">
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-800/80">
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-500/80" />
                       <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -218,7 +218,7 @@ const Home: React.FC = () => {
                     to="/about"
                     variant="primary"
                     size="lg"
-                    className="bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-200"
+                    className="bg-gray-900 dark:bg-primary-600 hover:bg-gray-800 dark:hover:bg-primary-700 text-white shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center gap-2">
                       <Terminal className="h-4 w-4" />
@@ -230,7 +230,7 @@ const Home: React.FC = () => {
                     to="/connect"
                     variant="outline"
                     size="lg"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500 transition-all duration-200"
+                    className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200"
                   >
                     <span className="flex items-center gap-2">
                       <MessageCircle className="h-4 w-4" />
@@ -249,8 +249,8 @@ const Home: React.FC = () => {
               >
                 {/* Profile picture */}
                 <div className="relative mb-6">
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-500 via-emerald-500 to-primary-500 opacity-40 blur-sm animate-float" />
-                  <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-gray-700 shadow-2xl">
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-400 via-emerald-400 to-primary-400 dark:from-primary-500 dark:via-emerald-500 dark:to-primary-500 opacity-30 dark:opacity-40 blur-sm animate-float" />
+                  <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-elevated dark:shadow-2xl">
                     <img
                       src="/profile.png"
                       alt="Osman Burak İntişah"
@@ -258,7 +258,7 @@ const Home: React.FC = () => {
                     />
                   </div>
                   {/* Online indicator */}
-                  <div className="absolute bottom-2 right-2 w-5 h-5 bg-emerald-400 rounded-full border-2 border-gray-900 animate-pulse" />
+                  <div className="absolute bottom-2 right-2 w-5 h-5 bg-emerald-400 rounded-full border-2 border-white dark:border-gray-900 animate-pulse" />
                 </div>
 
                 {/* Name and title */}
@@ -268,13 +268,13 @@ const Home: React.FC = () => {
                   transition={{ delay: 0.5 }}
                   className="text-center"
                 >
-                  <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
                     Burak Intisah
                   </h1>
-                  <p className="mt-1 text-primary-400 font-medium text-sm">
+                  <p className="mt-1 text-primary-600 dark:text-primary-400 font-medium text-sm">
                     Backend Engineer
                   </p>
-                  <p className="mt-3 text-gray-400 text-sm leading-relaxed max-w-xs">
+                  <p className="mt-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
                     Building highly scalable systems — from APIs and databases to full backend infrastructures.
                   </p>
                 </motion.div>
@@ -287,12 +287,12 @@ const Home: React.FC = () => {
                   className="mt-6 grid grid-cols-3 gap-4 w-full max-w-xs"
                 >
                   {[
-                    { label: 'Experience', value: '3+ yrs' },
+                    { label: 'Experience', value: '5+ yrs' },
                     { label: 'Company', value: 'Cherry' },
                     { label: 'Degree', value: 'CS, BSc' },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center p-2 rounded-lg bg-gray-800/50 border border-gray-700/30">
-                      <div className="text-white font-semibold text-sm">{stat.value}</div>
+                    <div key={stat.label} className="text-center p-2 rounded-lg bg-white/80 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/30 shadow-card dark:shadow-none">
+                      <div className="text-gray-900 dark:text-white font-semibold text-sm">{stat.value}</div>
                       <div className="text-gray-500 text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
                     </div>
                   ))}
@@ -315,9 +315,9 @@ const Home: React.FC = () => {
             className="flex flex-col items-center cursor-pointer group"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           >
-            <div className="w-5 h-8 border-2 border-gray-600 rounded-full flex justify-center pt-1.5 group-hover:border-primary-400 transition-colors">
+            <div className="w-5 h-8 border-2 border-gray-300 dark:border-gray-600 rounded-full flex justify-center pt-1.5 group-hover:border-primary-400 transition-colors">
               <motion.div
-                className="w-1 h-2.5 bg-gray-600 rounded-full"
+                className="w-1 h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full"
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
@@ -327,12 +327,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-16 bg-gray-900 border-t border-gray-800">
+      <section className="py-16 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <p className="text-xs font-medium text-primary-400 uppercase tracking-widest mb-2">Tech Stack</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Tools I Work With</h2>
+              <p className="text-xs font-medium text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Tech Stack</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Tools I Work With</h2>
             </div>
             <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
               {techStack.map((tech, index) => (
@@ -342,7 +342,7 @@ const Home: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="px-4 py-2 rounded-lg bg-gray-800/80 border border-gray-700/50 text-gray-300 text-sm font-medium hover:border-primary-500/50 hover:text-primary-300 transition-all duration-200 cursor-default"
+                  className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary-400 dark:hover:border-primary-500/50 hover:text-primary-600 dark:hover:text-primary-300 transition-all duration-200 cursor-default shadow-card dark:shadow-none"
                 >
                   {tech.name}
                 </motion.div>
