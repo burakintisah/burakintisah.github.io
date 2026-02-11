@@ -72,7 +72,7 @@ const projects: Project[] = [
     title: 'Party Games',
     description: 'Multiplayer browser games you can play with friends. Real-time interaction and fun — built for group entertainment!',
     tags: ['React', 'Real-time'],
-    imageUrl: '/projects/photos/party-games.png',
+    imageUrl: '/projects/photos/party-games.svg',
     liveUrl: 'https://games.burakintisah.com',
   },
   {

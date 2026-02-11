@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)" rx="0"/>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="80" r="60" fill="white" opacity="0.05"/>
+  <circle cx="700" cy="320" r="80" fill="white" opacity="0.05"/>
+  <circle cx="650" cy="60" r="40" fill="white" opacity="0.08"/>
+
+  <!-- Grid dots pattern -->
+  <g opacity="0.1">
+    <circle cx="50" cy="50" r="2" fill="white"/>
+    <circle cx="100" cy="50" r="2" fill="white"/>
+    <circle cx="150" cy="50" r="2" fill="white"/>
+    <circle cx="200" cy="50" r="2" fill="white"/>
+    <circle cx="50" cy="100" r="2" fill="white"/>
+    <circle cx="100" cy="100" r="2" fill="white"/>
+    <circle cx="150" cy="100" r="2" fill="white"/>
+    <circle cx="200" cy="100" r="2" fill="white"/>
+    <circle cx="600" cy="300" r="2" fill="white"/>
+    <circle cx="650" cy="300" r="2" fill="white"/>
+    <circle cx="700" cy="300" r="2" fill="white"/>
+    <circle cx="750" cy="300" r="2" fill="white"/>
+    <circle cx="600" cy="350" r="2" fill="white"/>
+    <circle cx="650" cy="350" r="2" fill="white"/>
+    <circle cx="700" cy="350" r="2" fill="white"/>
+    <circle cx="750" cy="350" r="2" fill="white"/>
+  </g>
+
+  <!-- Card 1 (back, tilted left) -->
+  <g transform="translate(240, 80) rotate(-12, 80, 120)" filter="url(#shadow)">
+    <rect width="160" height="220" rx="12" fill="url(#card1)"/>
+    <text x="80" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white" opacity="0.9">?</text>
+    <rect x="20" y="170" width="120" height="8" rx="4" fill="white" opacity="0.3"/>
+    <rect x="35" y="185" width="90" height="6" rx="3" fill="white" opacity="0.2"/>
+  </g>
+
+  <!-- Card 2 (middle, straight) -->
+  <g transform="translate(310, 60)" filter="url(#shadow)">
+    <rect width="180" height="250" rx="14" fill="url(#card2)"/>
+    <!-- Chat bubble icon -->
+    <g transform="translate(55, 60)">
+      <rect x="0" y="0" width="70" height="50" rx="10" fill="white" opacity="0.9"/>
+      <polygon points="15,50 25,65 35,50" fill="white" opacity="0.9"/>
+      <circle cx="22" cy="25" r="4" fill="#3b82f6"/>
+      <circle cx="35" cy="25" r="4" fill="#3b82f6"/>
+      <circle cx="48" cy="25" r="4" fill="#3b82f6"/>
+    </g>
+    <text x="90" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="white">Conversation</text>
+    <text x="90" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="white">Cards</text>
+    <rect x="30" y="200" width="120" height="8" rx="4" fill="white" opacity="0.3"/>
+    <rect x="45" y="215" width="90" height="6" rx="3" fill="white" opacity="0.2"/>
+  </g>
+
+  <!-- Card 3 (back, tilted right) -->
+  <g transform="translate(400, 90) rotate(10, 80, 120)" filter="url(#shadow)">
+    <rect width="160" height="220" rx="12" fill="url(#card3)"/>
+    <text x="80" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white" opacity="0.9">!</text>
+    <rect x="20" y="170" width="120" height="8" rx="4" fill="white" opacity="0.3"/>
+    <rect x="35" y="185" width="90" height="6" rx="3" fill="white" opacity="0.2"/>
+  </g>
+
+  <!-- Title text -->
+  <text x="400" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="18" fill="white" opacity="0.9">games.burakintisah.com</text>
+</svg>
