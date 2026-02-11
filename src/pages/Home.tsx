@@ -43,7 +43,7 @@ const featuredProjects = [
     id: 1,
     title: 'Party Games',
     description: 'Arkadaşlarla birlikte oynayabileceğin multiplayer tarayıcı oyunları. Gerçek zamanlı etkileşim ve eğlence!',
-    tags: ['Multiplayer', 'Games', 'Real-time'],
+    tags: ['Games', 'Real-time'],
     imageUrl: '/projects/photos/party-games.png',
     liveUrl: 'https://games.burakintisah.com',
   },
