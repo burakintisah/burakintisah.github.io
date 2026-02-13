@@ -1,5 +1,9 @@
 # CLAUDE.md - AI Assistant Guide
 
+## Git Rules
+
+- **Never add `Co-Authored-By` lines to commit messages.** All commits should appear as if written solely by the developer.
+
 ## Project Overview
 
 Personal portfolio website for Osman Burak Intisah (burakintisah.com). React SPA hosted on GitHub Pages.

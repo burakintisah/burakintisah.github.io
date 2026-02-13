@@ -5,7 +5,6 @@ import { Terminal, Menu, X, Github, Linkedin, Mail, FileText, Instagram, Moon, S
 const Layout: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [contentDropdownOpen, setContentDropdownOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -26,7 +25,6 @@ const Layout: React.FC = () => {
 
   useEffect(() => {
     setMobileMenuOpen(false);
-    setAboutDropdownOpen(false);
     setContentDropdownOpen(false);
   }, [location.pathname]);
 
@@ -48,15 +46,11 @@ const Layout: React.FC = () => {
     { name: 'Projects', path: '/projects' }
   ];
 
-  const aboutDropdownItems = [
-    { name: 'About', path: '/about' },
-    { name: 'What I Use', path: '/uses' }
-  ];
-
   const contentDropdownItems = [
     { name: 'Blog', path: '/blog' },
     { name: 'Bookshelf', path: '/bookshelf' },
-    { name: 'Reading List', path: '/reading-list' }
+    { name: 'Reading List', path: '/reading-list' },
+    { name: 'What I Use', path: '/uses' }
   ];
 
   const socialLinks = [
@@ -64,7 +58,7 @@ const Layout: React.FC = () => {
     { icon: <Linkedin className="h-5 w-5" />, href: 'https://linkedin.com/in/burakintisah', label: 'LinkedIn' },
     { icon: <Instagram className="h-5 w-5" />, href: 'https://www.instagram.com/osman.burakk', label: 'Instagram' },
     { icon: <Mail className="h-5 w-5" />, href: 'mailto:burak.intisah@gmail.com', label: 'Email' },
-    { icon: <FileText className="h-5 w-5" />, href: '/burak_intisah_resume.pdf', label: 'Download Resume', download: true },
+    { icon: <FileText className="h-5 w-5" />, href: '/burak_intisah_resume.pdf', label: 'Resume' },
   ];
 
   const isActive = (path: string) => {
@@ -73,12 +67,8 @@ const Layout: React.FC = () => {
     return false;
   };
 
-  const isAboutSectionActive = () => {
-    return location.pathname === '/about' || location.pathname === '/uses';
-  };
-
   const isContentSectionActive = () => {
-    return location.pathname === '/blog' || location.pathname === '/bookshelf' || location.pathname === '/reading-list';
+    return location.pathname === '/blog' || location.pathname === '/bookshelf' || location.pathname === '/reading-list' || location.pathname === '/uses';
   };
 
   return (
@@ -112,44 +102,16 @@ const Layout: React.FC = () => {
                 Home
               </Link>
 
-              {/* About Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setAboutDropdownOpen(true)}
-                onMouseLeave={() => setAboutDropdownOpen(false)}
+              <Link
+                to="/about"
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive('/about')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}
               >
-                <button
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    isAboutSectionActive()
-                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  <span>About</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-elevated dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-gray-700 transition-all duration-200 ${
-                  aboutDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                }`}>
-                  <div className="p-1.5">
-                    {aboutDropdownItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        className={`block px-3 py-2 text-sm rounded-lg transition-all duration-150 ${
-                          isActive(item.path)
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                About Me
+              </Link>
 
               {navLinks.map((link) => (
                 <Link
@@ -301,24 +263,17 @@ const Layout: React.FC = () => {
                 Home
               </Link>
 
-              {/* About Section */}
-              <div className="pt-4 pb-2">
-                <div className="px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">About</div>
-              </div>
-              {aboutDropdownItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ml-2 ${
-                    isActive(item.path)
-                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              <Link
+                to="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  isActive('/about')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}
+              >
+                About Me
+              </Link>
 
               {/* Main Navigation */}
               <div className="pt-4 pb-2">
@@ -412,10 +367,8 @@ const Layout: React.FC = () => {
           <a
             key={index}
             href={link.href}
-            {...(link.download
-              ? { download: 'burak_intisah_resume.pdf' }
-              : { target: '_blank', rel: 'noopener noreferrer' }
-            )}
+            target="_blank"
+            rel="noopener noreferrer"
             className="p-2.5 rounded-xl text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/40 transition-all duration-200"
             aria-label={link.label}
           >

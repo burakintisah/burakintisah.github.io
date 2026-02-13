@@ -65,12 +65,13 @@ const About: React.FC = () => {
             <div className="mt-4 flex justify-center">
               <a
                 href="/burak_intisah_resume.pdf"
-                download="burak_intisah_resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="Download Resume"
+                aria-label="View Resume"
               >
                 <FileText className="h-4 w-4" />
-                <span>Download Resume</span>
+                <span>View Resume</span>
               </a>
             </div>
           </AnimatedSection>
