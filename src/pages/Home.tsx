@@ -112,13 +112,9 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section - Terminal Inspired */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900 pt-16 overflow-hidden">
+      <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
         {/* Animated grid background */}
         <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-hero opacity-40 dark:opacity-20" />
-
-        {/* Gradient accents */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary-300/15 dark:bg-primary-500/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-300/10 dark:bg-emerald-500/6 rounded-full blur-[100px]" />
 
         <div className="container mx-auto px-4 z-10 w-full">
           <div className="max-w-5xl mx-auto">
@@ -327,7 +323,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-16 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <section className="py-16 bg-gray-100/70 dark:bg-gray-800/30 border-t border-gray-200/60 dark:border-gray-700/40 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-10">
@@ -353,9 +349,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 md:py-28 bg-white dark:bg-gray-900 relative">
-        <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20 md:py-28 relative">
+        <div className="container mx-auto px-4">
           <AnimatedSection className="mb-16">
             <div className="text-center mb-12">
               <p className="text-sm font-medium text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">Portfolio</p>

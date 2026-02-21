@@ -72,7 +72,15 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-primary-50/40 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 transition-colors duration-200 flex flex-col relative">
+      {/* Decorative background elements */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-200/20 dark:bg-primary-500/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-200/15 dark:bg-emerald-500/5 rounded-full blur-[130px] translate-y-1/3 -translate-x-1/4" />
+        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-violet-200/10 dark:bg-violet-500/4 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="bg-dot-pattern absolute inset-0 opacity-60 dark:opacity-40" />
+      </div>
+
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
@@ -357,7 +365,7 @@ const Layout: React.FC = () => {
         </nav>
       </div>
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1 pt-16 relative z-10">
         <Outlet />
       </main>
 
@@ -377,7 +385,7 @@ const Layout: React.FC = () => {
         ))}
       </div>
 
-      <footer className="border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900">
+      <footer className="border-t border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-900/90 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2.5">

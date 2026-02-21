@@ -53,7 +53,7 @@ const About: React.FC = () => {
     : skillCategories.find(cat => cat.name === selectedCategory)?.skills || [];
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div>
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
         {/* Page Header */}
         <div className="text-center mb-16">
