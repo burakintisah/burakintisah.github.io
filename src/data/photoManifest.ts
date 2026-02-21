@@ -15,6 +15,7 @@ export const PHOTO_MANIFEST: PhotoManifestType = {
 
   japan: [
     { filename: 'kyoto-fushimi_inari-1.jpg', tags: ['Japan', 'Kyoto', 'Temple'] },
+    { filename: 'osaka-dotonbori-burak-1.png', tags: ['Japan', 'Osaka'] },
   ],
 
   USA: [
