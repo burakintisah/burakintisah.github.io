@@ -60,6 +60,8 @@ export const getWebpUrl = (url: string): string => {
   // Files without WebP versions
   if (url.includes('istanbul-trendyol-campus-outside')) return '';
   if (url.includes('osaka-dotonbori-burak-1')) return '';
+  if (url.includes('book-notes')) return '';
+  if (url.includes('party-games')) return '';
   return url.replace(/\.(jpe?g|png)$/i, '.webp');
 };
 
