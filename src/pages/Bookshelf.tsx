@@ -146,7 +146,7 @@ const books: Book[] = [
     tags: ['Software Engineering', 'Product'],
     purchaseLink: 'https://www.oreilly.com/library/view/the-product-minded-engineer/9781098173722/',
     coverImage: 'https://www.oreilly.com/covers/urn:orm:book:9781098173722/300w/',
-    notesUrl: 'https://book.burakintisah.com/books/the-product-minded-engineer'
+    notesUrl: 'https://books.burakintisah.com/books/the-product-minded-engineer'
   }
 ];
 
@@ -154,6 +154,7 @@ const Bookshelf: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showOnlyWithNotes, setShowOnlyWithNotes] = useState<boolean>(false);
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -175,15 +176,16 @@ const Bookshelf: React.FC = () => {
         book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      const notesMatch = !showOnlyWithNotes || !!book.notesUrl;
 
-      return tagMatch && yearMatch && searchMatch;
+      return tagMatch && yearMatch && searchMatch && notesMatch;
     });
 
     // Sort by finished date (most recent first)
     filtered.sort((a, b) => new Date(b.finishedDate).getTime() - new Date(a.finishedDate).getTime());
 
     return filtered;
-  }, [selectedTags, selectedYear, searchQuery]);
+  }, [selectedTags, selectedYear, searchQuery, showOnlyWithNotes]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -210,9 +212,10 @@ const Bookshelf: React.FC = () => {
     setSelectedTags([]);
     setSelectedYear('all');
     setSearchQuery('');
+    setShowOnlyWithNotes(false);
   };
 
-  const hasActiveFilters = selectedTags.length > 0 || selectedYear !== 'all' || searchQuery !== '';
+  const hasActiveFilters = selectedTags.length > 0 || selectedYear !== 'all' || searchQuery !== '' || showOnlyWithNotes;
 
   return (
     <div className="min-h-screen">
@@ -244,6 +247,23 @@ const Bookshelf: React.FC = () => {
                   className="w-full pl-10 pr-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-all text-sm"
                 />
               </div>
+            </div>
+
+            {/* Has Notes Filter */}
+            <div className="mb-6">
+              <label className="block text-xs font-semibold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-2">
+                Notes
+              </label>
+              <button
+                onClick={() => setShowOnlyWithNotes(prev => !prev)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  showOnlyWithNotes
+                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              >
+                Has Notes
+              </button>
             </div>
 
             {/* Year Filter */}
