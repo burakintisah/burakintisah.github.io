@@ -64,7 +64,8 @@ const books: Book[] = [
     rating: 5,
     tags: ['System Design'],
     purchaseLink: 'https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321',
-    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1415816873i/23463279.jpg'
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1415816873i/23463279.jpg',
+    notesUrl: 'https://books.burakintisah.com/books/designing-data-intensive-applications'
   },
   {
     id: 6,
