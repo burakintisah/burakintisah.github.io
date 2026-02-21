@@ -1,16 +1,13 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { X } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
-import { createPhotoManifest, collectAllTags, Photo, getWebpUrl } from '../utils/photoLoader';
+import { createPhotoManifest, Photo, getWebpUrl } from '../utils/photoLoader';
 import { PHOTO_MANIFEST } from '../data/photoManifest';
 
-// Photo card component with optimized loading and responsive design
+// Photo card component - displays image only, no names or tags
 const PhotoCard: React.FC<{
   photo: Photo;
-  onOpen: (photo: Photo) => void;
-  onTagClick: (tag: string) => void;
-}> = ({ photo, onOpen, onTagClick }) => {
+}> = ({ photo }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
@@ -28,7 +25,6 @@ const PhotoCard: React.FC<{
     setImageError(true);
   };
 
-  // Calculate optimal height based on aspect ratio with constraints
   const calculateHeight = () => {
     if (!imageDimensions) return 300;
 
@@ -36,7 +32,6 @@ const PhotoCard: React.FC<{
     const baseWidth = 300;
     const calculatedHeight = baseWidth * aspectRatio;
 
-    // Constrain height between 200px and 400px for better layout
     return Math.min(Math.max(calculatedHeight, 200), 400);
   };
 
@@ -44,8 +39,7 @@ const PhotoCard: React.FC<{
 
   return (
     <div
-      className="relative cursor-pointer overflow-hidden rounded-xl group break-inside-avoid mb-4 transition-all duration-300 hover:shadow-card-hover"
-      onClick={() => onOpen(photo)}
+      className="relative overflow-hidden rounded-xl group break-inside-avoid mb-4 transition-all duration-300 hover:shadow-card-hover"
       style={{ height: `${cardHeight}px` }}
     >
       {/* Loading skeleton */}
@@ -90,57 +84,16 @@ const PhotoCard: React.FC<{
           />
         </picture>
       )}
-
-      {/* Hover overlay with tags */}
-      {imageLoaded && !imageError && (
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-end">
-          <div className="w-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex flex-wrap gap-1">
-              {photo.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onTagClick(tag);
-                  }}
-                  className="bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors cursor-pointer"
-                >
-                  {tag}
-                </span>
-              ))}
-              {photo.tags.length > 3 && (
-                <span className="bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded-lg text-xs font-medium">
-                  +{photo.tags.length - 3}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Tag badges (always visible) */}
-      {imageLoaded && !imageError && (
-        <div className="absolute top-2 left-2 flex flex-wrap gap-1 max-w-[80%]">
-          {photo.tags.slice(0, 2).map((tag) => (
-            <span
-              key={tag}
-              className="bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-xs font-medium"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </div>
   );
 };
 
-// Tag filter button component
-const TagButton: React.FC<{
-  tag: string;
+// Category filter button component
+const CategoryButton: React.FC<{
+  label: string;
   isSelected: boolean;
   onClick: () => void;
-}> = ({ tag, isSelected, onClick }) => (
+}> = ({ label, isSelected, onClick }) => (
   <button
     onClick={onClick}
     className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
@@ -149,145 +102,65 @@ const TagButton: React.FC<{
         : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600'
     }`}
   >
-    {tag}
+    {label}
   </button>
 );
 
-// Lightbox component for better organization
-const Lightbox: React.FC<{
-  photo: Photo;
-  onClose: () => void;
-  onTagClick: (tag: string) => void;
-}> = ({ photo, onClose, onTagClick }) => (
-  <div
-    className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-    onClick={onClose}
-  >
-    <button
-      className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-10 p-2 rounded-lg hover:bg-white/10"
-      onClick={onClose}
-      aria-label="Close lightbox"
-    >
-      <X className="h-6 w-6" />
-    </button>
-    <div
-      className="max-w-4xl max-h-[90vh] relative"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <picture>
-        {getWebpUrl(photo.url) && (
-          <source srcSet={getWebpUrl(photo.url)} type="image/webp" />
-        )}
-        <img
-          src={photo.url}
-          alt={photo.alt}
-          className="max-w-full max-h-[90vh] object-contain rounded-xl"
-        />
-      </picture>
-      <div className="text-white text-center mt-4">
-        <p className="text-base font-medium">{photo.alt}</p>
-        <div className="flex flex-wrap justify-center gap-2 mt-2">
-          {photo.tags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => {
-                onClose();
-                onTagClick(tag);
-              }}
-              className="bg-white/20 backdrop-blur-sm hover:bg-primary-600 text-white px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-);
+// Display labels for each folder category
+const CATEGORY_LABELS: Record<string, string> = {
+  cherry: 'Cherry',
+  trendyol: 'Trendyol',
+  japan: 'Japan',
+  korea: 'Korea',
+  USA: 'USA',
+};
 
 // Main Photography component
 const Photography: React.FC = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Read active filter from URL (?filter=Cherry)
+  const activeFilter = searchParams.get('filter') ?? '';
 
   // Generate photos from manifest
   const photos: Photo[] = useMemo(() => {
     return createPhotoManifest(PHOTO_MANIFEST);
   }, []);
 
-  // Get all unique tags
-  const allTags = useMemo(() => {
-    return collectAllTags(photos);
-  }, [photos]);
+  // Derive available categories from manifest folder keys
+  const categories = useMemo(() => {
+    return Object.keys(PHOTO_MANIFEST).map(folder => ({
+      key: folder,
+      label: CATEGORY_LABELS[folder] ?? folder,
+    }));
+  }, []);
 
-  // Handle URL parameters for deep linking
-  useEffect(() => {
-    const tagsParam = searchParams.get('tags');
-    if (tagsParam) {
-      const urlTags = tagsParam.split(',').filter(t => allTags.includes(t));
-      if (urlTags.length > 0) {
-        setSelectedTags(urlTags);
-      }
+  // Set filter
+  const handleFilterSelect = useCallback((label: string) => {
+    if (label === activeFilter) {
+      // Deselect
+      setSearchParams({});
+    } else {
+      setSearchParams({ filter: label });
     }
-  }, [searchParams, allTags]);
+  }, [activeFilter, setSearchParams]);
 
-  // Handle tag toggle
-  const handleTagToggle = useCallback((tag: string) => {
-    setSelectedTags(prev => {
-      const newTags = prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag];
-
-      if (newTags.length === 0) {
-        setSearchParams({});
-      } else {
-        setSearchParams({ tags: newTags.join(',') });
-      }
-
-      return newTags;
-    });
-  }, [setSearchParams]);
-
-  // Clear all filters
-  const clearFilters = useCallback(() => {
-    setSelectedTags([]);
+  // Clear filter
+  const clearFilter = useCallback(() => {
     setSearchParams({});
   }, [setSearchParams]);
 
-  // Filter photos by selected tags (AND logic: photo must have ALL selected tags)
+  // Filter photos by selected category (match folder name, case-insensitive)
   const displayedPhotos = useMemo(() => {
-    let filteredPhotos = selectedTags.length === 0
-      ? photos
-      : photos.filter(photo =>
-          selectedTags.every(tag => photo.tags.includes(tag))
-        );
-
-    // Shuffle photos when showing all for visual variety
-    if (selectedTags.length === 0) {
-      filteredPhotos = [...filteredPhotos].sort(() => Math.random() - 0.5);
+    if (!activeFilter) {
+      // Shuffle when showing all
+      return [...photos].sort(() => Math.random() - 0.5);
     }
 
-    return filteredPhotos;
-  }, [photos, selectedTags]);
-
-  // Lightbox controls
-  const openLightbox = (photo: Photo) => {
-    setSelectedPhoto(photo);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeLightbox = () => {
-    setSelectedPhoto(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
+    return photos.filter(photo =>
+      photo.folder.toLowerCase() === activeFilter.toLowerCase()
+    );
+  }, [photos, activeFilter]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -305,36 +178,26 @@ const Photography: React.FC = () => {
           </div>
         </AnimatedSection>
 
-        {/* Tag filter buttons */}
+        {/* Category filter buttons */}
         <AnimatedSection delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-2 mb-4">
-            {allTags.map((tag) => (
-              <TagButton
-                key={tag}
-                tag={tag}
-                isSelected={selectedTags.includes(tag)}
-                onClick={() => handleTagToggle(tag)}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {categories.map(({ key, label }) => (
+              <CategoryButton
+                key={key}
+                label={label}
+                isSelected={activeFilter.toLowerCase() === label.toLowerCase()}
+                onClick={() => handleFilterSelect(label)}
               />
             ))}
-          </div>
-          {selectedTags.length > 0 && (
-            <div className="flex justify-center mt-2 mb-8">
+            {activeFilter && (
               <button
-                onClick={clearFilters}
-                className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors underline"
+                onClick={clearFilter}
+                className="px-3 py-1.5 rounded-full text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors underline"
               >
-                Clear all filters ({selectedTags.length} active)
+                Clear
               </button>
-            </div>
-          )}
-        </AnimatedSection>
-
-        {/* Photo count */}
-        <AnimatedSection delay={0.2}>
-          <p className="text-center text-sm text-gray-500 dark:text-gray-500 mb-8">
-            {displayedPhotos.length} photo{displayedPhotos.length !== 1 ? 's' : ''}
-            {selectedTags.length > 0 && ` matching: ${selectedTags.join(' + ')}`}
-          </p>
+            )}
+          </div>
         </AnimatedSection>
 
         {/* Photo gallery */}
@@ -344,14 +207,10 @@ const Photography: React.FC = () => {
         >
           {displayedPhotos.map((photo, index) => (
             <AnimatedSection
-              key={`${selectedTags.join('-')}-${photo.id}`}
+              key={`${activeFilter}-${photo.id}`}
               delay={index * 0.05}
             >
-              <PhotoCard
-                photo={photo}
-                onOpen={openLightbox}
-                onTagClick={handleTagToggle}
-              />
+              <PhotoCard photo={photo} />
             </AnimatedSection>
           ))}
         </div>
@@ -362,27 +221,18 @@ const Photography: React.FC = () => {
             <div className="text-center py-16">
               <div className="text-gray-300 dark:text-gray-600 text-6xl mb-4">📷</div>
               <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">
-                No photos found matching: {selectedTags.join(' + ')}
+                No photos found for this category
               </p>
               <button
-                onClick={clearFilters}
+                onClick={clearFilter}
                 className="text-primary-600 dark:text-primary-400 hover:underline"
               >
-                Clear filters
+                Show all photos
               </button>
             </div>
           </AnimatedSection>
         )}
       </div>
-
-      {/* Lightbox modal */}
-      {selectedPhoto && (
-        <Lightbox
-          photo={selectedPhoto}
-          onClose={closeLightbox}
-          onTagClick={handleTagToggle}
-        />
-      )}
     </div>
   );
 };
