@@ -248,9 +248,9 @@ const Home: React.FC = () => {
                   <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-400 via-emerald-400 to-primary-400 dark:from-primary-500 dark:via-emerald-500 dark:to-primary-500 opacity-30 dark:opacity-40 blur-sm animate-float" />
                   <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-elevated dark:shadow-2xl">
                     <img
-                      src="/profile.png"
+                      src="/photos/korea/hanbok-burak-1.jpeg"
                       alt="Osman Burak İntişah"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                   {/* Online indicator */}
