@@ -81,7 +81,7 @@ const projects: Project[] = [
     title: 'Book Notes',
     description: 'A personal knowledge base for books I read — featuring detailed notes, key insights, and sticky notes to revisit later.',
     tags: ['React'],
-    imageUrl: '/projects/photos/book-notes.png',
+    imageUrl: '/projects/photos/book-notes.jpg',
     githubUrl: 'https://github.com/burakintisah/books',
     liveUrl: 'https://books.burakintisah.com',
   },

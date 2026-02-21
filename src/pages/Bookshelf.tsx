@@ -145,7 +145,7 @@ const books: Book[] = [
     rating: 5,
     tags: ['Software Engineering', 'Product'],
     purchaseLink: 'https://www.oreilly.com/library/view/the-product-minded-engineer/9781098173722/',
-    coverImage: '/books/product-minded-engineer.jpg',
+    coverImage: 'https://m.media-amazon.com/images/I/81YVbEj2YIL._SL1500_.jpg',
     notesUrl: 'https://book.burakintisah.com/books/the-product-minded-engineer'
   }
 ];
