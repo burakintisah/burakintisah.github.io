@@ -70,10 +70,20 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'Party Games',
-    description: 'Multiplayer browser games you can play with friends. Real-time interaction and fun — built for group entertainment!',
-    tags: ['React', 'Real-time'],
+    description: 'Multiplayer browser games you can play with friends — built for group entertainment!',
+    tags: ['React'],
     imageUrl: '/projects/photos/party-games.svg',
+    githubUrl: 'https://github.com/burakintisah/games',
     liveUrl: 'https://games.burakintisah.com',
+  },
+  {
+    id: 7,
+    title: 'Book Notes',
+    description: 'A personal knowledge base for books I read — featuring detailed notes, key insights, and sticky notes to revisit later.',
+    tags: ['React'],
+    imageUrl: '/projects/photos/book-notes.png',
+    githubUrl: 'https://github.com/burakintisah/books',
+    liveUrl: 'https://books.burakintisah.com',
   },
   {
     id: 2,

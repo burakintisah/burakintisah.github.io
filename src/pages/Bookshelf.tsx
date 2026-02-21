@@ -11,6 +11,7 @@ interface Book {
   tags: string[];
   purchaseLink: string;
   coverImage: string;
+  notesUrl?: string; // Link to detailed book notes on books.burakintisah.com
 }
 
 const books: Book[] = [
@@ -42,7 +43,8 @@ const books: Book[] = [
     rating: 4,
     tags: ['Psychology', 'Productivity'],
     purchaseLink: 'https://amzn.eu/d/4N2HVVo',
-    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535115320i/40121378.jpg'
+    coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535115320i/40121378.jpg',
+    notesUrl: 'https://books.burakintisah.com/books/atomic-habits'
   },
   {
     id: 4,
@@ -375,6 +377,18 @@ const Bookshelf: React.FC = () => {
                       </span>
                     )}
                   </div>
+
+                  {book.notesUrl && (
+                    <a
+                      href={book.notesUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 flex items-center justify-center gap-1.5 w-full px-3 py-1.5 text-xs font-medium text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-950/30 hover:bg-primary-100 dark:hover:bg-primary-900/40 rounded-lg transition-colors"
+                    >
+                      <BookOpen className="h-3.5 w-3.5" />
+                      My Notes
+                    </a>
+                  )}
                 </div>
               </div>
             </AnimatedSection>
