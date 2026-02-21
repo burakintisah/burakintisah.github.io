@@ -350,10 +350,11 @@ const Bookshelf: React.FC = () => {
         </AnimatedSection>
 
         {/* Books Grid */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {filteredBooks.map((book, index) => (
-            <AnimatedSection key={book.id} delay={index * 0.05}>
+        <AnimatedSection>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          {filteredBooks.map((book) => (
               <div
+                key={book.id}
                 className="bg-white dark:bg-gray-800/50 rounded-lg sm:rounded-xl shadow-card hover:shadow-card-hover border border-gray-200/80 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 group h-full"
               >
                 {/* Book Cover */}
@@ -434,9 +435,9 @@ const Bookshelf: React.FC = () => {
                   )}
                 </div>
               </div>
-            </AnimatedSection>
           ))}
-        </div>
+          </div>
+        </AnimatedSection>
 
         {filteredBooks.length === 0 && (
           <AnimatedSection>
