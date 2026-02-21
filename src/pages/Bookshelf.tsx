@@ -136,6 +136,17 @@ const books: Book[] = [
     "tags": ["Philosophy"],
     "purchaseLink": "https://amzn.eu/d/7NAFuZ0",
     "coverImage": "https://upload.wikimedia.org/wikipedia/tr/1/1e/Sofie%27nin_D%C3%BCnyas%C4%B1.jpg"
+  },
+  {
+    id: 13,
+    title: 'The Product-Minded Engineer',
+    author: 'Drew Hoskins',
+    finishedDate: '2026-02-15',
+    rating: 5,
+    tags: ['Software Engineering', 'Product'],
+    purchaseLink: 'https://www.oreilly.com/library/view/the-product-minded-engineer/9781098173722/',
+    coverImage: 'https://www.oreilly.com/covers/urn:orm:book:9781098173722/300w/',
+    notesUrl: 'https://book.burakintisah.com/books/the-product-minded-engineer'
   }
 ];
 
