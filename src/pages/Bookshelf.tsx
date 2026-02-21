@@ -156,7 +156,7 @@ const books: Book[] = [
     rating: 3,
     tags: ['Software Engineering'],
     purchaseLink: 'https://www.amazon.com/Software-Engineers-Guidebook-Navigating-positions/dp/908338182X',
-    coverImage: 'https://m.media-amazon.com/images/I/71mSVMRdbML._SL1500_.jpg',
+    coverImage: 'https://m.media-amazon.com/images/I/5192SYDzXFL._AC_UF894,1000_QL80_.jpg',
     notesUrl: 'https://books.burakintisah.com/books/the-software-engineers-guidebook'
   }
 ];
