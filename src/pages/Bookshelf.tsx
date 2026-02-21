@@ -147,6 +147,17 @@ const books: Book[] = [
     purchaseLink: 'https://www.oreilly.com/library/view/the-product-minded-engineer/9781098173722/',
     coverImage: 'https://www.oreilly.com/covers/urn:orm:book:9781098173722/300w/',
     notesUrl: 'https://books.burakintisah.com/books/the-product-minded-engineer'
+  },
+  {
+    id: 14,
+    title: "The Software Engineer's Guidebook",
+    author: 'Gergely Orosz',
+    finishedDate: '2026-02-21',
+    rating: 3,
+    tags: ['Software Engineering'],
+    purchaseLink: 'https://www.amazon.com/Software-Engineers-Guidebook-Navigating-positions/dp/908338182X',
+    coverImage: 'https://m.media-amazon.com/images/I/71mSVMRdbML._SL1500_.jpg',
+    notesUrl: 'https://books.burakintisah.com/books/the-software-engineers-guidebook'
   }
 ];
 
