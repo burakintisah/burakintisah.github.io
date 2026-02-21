@@ -202,7 +202,7 @@ const Bookshelf: React.FC = () => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-3 w-3 ${
+        className={`h-2 w-2 sm:h-3 sm:w-3 ${
           i < rating
             ? 'text-yellow-400 fill-current'
             : 'text-gray-200 dark:text-gray-700'
@@ -350,11 +350,11 @@ const Bookshelf: React.FC = () => {
         </AnimatedSection>
 
         {/* Books Grid */}
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {filteredBooks.map((book, index) => (
             <AnimatedSection key={book.id} delay={index * 0.05}>
               <div
-                className="bg-white dark:bg-gray-800/50 rounded-xl shadow-card hover:shadow-card-hover border border-gray-200/80 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 group h-full"
+                className="bg-white dark:bg-gray-800/50 rounded-lg sm:rounded-xl shadow-card hover:shadow-card-hover border border-gray-200/80 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 group h-full"
               >
                 {/* Book Cover */}
                 <div className="aspect-[3/4] relative overflow-hidden">
@@ -372,7 +372,7 @@ const Bookshelf: React.FC = () => {
                   />
                   {/* Fallback */}
                   <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800 flex items-center justify-center" style={{ display: 'none' }}>
-                    <BookOpen className="h-12 w-12 text-gray-300 dark:text-gray-600" />
+                    <BookOpen className="h-8 w-8 sm:h-12 sm:w-12 text-gray-300 dark:text-gray-600" />
                   </div>
 
                   {/* Purchase Link Overlay */}
@@ -380,31 +380,31 @@ const Bookshelf: React.FC = () => {
                     href={book.purchaseLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute top-2 right-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white dark:hover:bg-gray-800"
+                    className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-1 sm:p-2 rounded-md sm:rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white dark:hover:bg-gray-800"
                     aria-label={`Buy ${book.title}`}
                   >
-                    <ExternalLink className="h-3.5 w-3.5 text-gray-600 dark:text-gray-400" />
+                    <ExternalLink className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gray-600 dark:text-gray-400" />
                   </a>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 line-clamp-2">
+                <div className="p-2 sm:p-4">
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-[10px] sm:text-sm mb-0.5 sm:mb-1 line-clamp-2">
                     {book.title}
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-500 text-xs mb-2">
+                  <p className="text-gray-500 dark:text-gray-500 text-[9px] sm:text-xs mb-1 sm:mb-2 line-clamp-1">
                     {book.author}
                   </p>
 
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-1 sm:mb-3">
                     <div className="flex">
                       {renderStars(book.rating)}
                     </div>
-                    <span className="text-xs text-gray-400 dark:text-gray-500">
+                    <span className="text-[9px] sm:text-xs text-gray-400 dark:text-gray-500">
                       {new Date(book.finishedDate).getFullYear()}
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap gap-1">
+                  <div className="hidden sm:flex flex-wrap gap-1">
                     {book.tags.slice(0, 2).map((tag, index) => (
                       <span
                         key={index}
@@ -426,9 +426,9 @@ const Bookshelf: React.FC = () => {
                       href={book.notesUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 flex items-center justify-center gap-1.5 w-full px-3 py-1.5 text-xs font-medium text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-950/30 hover:bg-primary-100 dark:hover:bg-primary-900/40 rounded-lg transition-colors"
+                      className="mt-1.5 sm:mt-3 flex items-center justify-center gap-1 sm:gap-1.5 w-full px-1.5 sm:px-3 py-1 sm:py-1.5 text-[9px] sm:text-xs font-medium text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-950/30 hover:bg-primary-100 dark:hover:bg-primary-900/40 rounded-md sm:rounded-lg transition-colors"
                     >
-                      <BookOpen className="h-3.5 w-3.5" />
+                      <BookOpen className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
                       My Notes
                     </a>
                   )}
