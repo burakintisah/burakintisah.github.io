@@ -250,7 +250,7 @@ const Home: React.FC = () => {
                     <img
                       src="/photos/korea/hanbok-burak-1.jpeg"
                       alt="Osman Burak İntişah"
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-[center_25%]"
                     />
                   </div>
                   {/* Online indicator */}

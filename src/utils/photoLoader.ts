@@ -57,8 +57,9 @@ export const loadImageDimensions = (url: string): Promise<{width: number, height
 
 // Helper to get WebP URL from original image URL
 export const getWebpUrl = (url: string): string => {
-  // istanbul-trendyol-campus-outside has no WebP (it was larger)
+  // Files without WebP versions
   if (url.includes('istanbul-trendyol-campus-outside')) return '';
+  if (url.includes('osaka-dotonbori-burak-1')) return '';
   return url.replace(/\.(jpe?g|png)$/i, '.webp');
 };
 
