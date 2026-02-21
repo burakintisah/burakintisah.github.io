@@ -47,8 +47,8 @@ const Uses: React.FC = () => {
       link: 'https://www.logitech.com/en-us/products/keyboards/mx-keys-wireless-keyboard.html'
     },
     {
-      name: 'iPhone 15 Pro',
-      description: 'Latest iPhone with titanium build and advanced camera system.',
+      name: 'iPhone 15 Pro Max',
+      description: 'Latest iPhone with titanium build, advanced camera system, and the largest display.',
       usage: 'Mobile development testing, photography, and staying connected on the go.',
       icon: <Smartphone className="h-6 w-6" />,
       link: 'https://www.apple.com/iphone-15-pro/'
@@ -61,11 +61,11 @@ const Uses: React.FC = () => {
       link: 'https://www.apple.com/airpods-pro/'
     },
     {
-      name: 'Kindle Paperwhite',
-      description: 'E-reader with high-resolution display and adjustable warm light.',
-      usage: 'Reading technical books, documentation, and staying updated with industry trends.',
+      name: 'iPad Mini',
+      description: 'Compact tablet with A17 Pro chip, Apple Pencil support, and Liquid Retina display.',
+      usage: 'Reading technical books, browsing documentation, quick note-taking, and portable content consumption.',
       icon: <BookOpen className="h-6 w-6" />,
-      link: 'https://www.amazon.com/kindle-paperwhite'
+      link: 'https://www.apple.com/ipad-mini/'
     }
   ];
 
@@ -90,6 +90,13 @@ const Uses: React.FC = () => {
       usage: 'Command line interface with intelligent autocomplete, command history.',
       icon: <Terminal className="h-6 w-6" />,
       link: 'https://www.warp.dev/'
+    },
+    {
+      name: 'Claude Code',
+      description: 'Anthropic\'s agentic coding tool that reads your codebase, edits files, and runs commands directly from the terminal.',
+      usage: 'AI-powered pair programming, building features, fixing bugs, and automating development tasks across entire projects.',
+      icon: <Terminal className="h-6 w-6" />,
+      link: 'https://www.anthropic.com/claude-code'
     }
   ];
 
