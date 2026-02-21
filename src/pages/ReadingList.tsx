@@ -15,6 +15,26 @@ interface Article {
 
 const articles: Article[] = [
   {
+    id: 6,
+    title: 'Claude Code: Best Practices for Agentic Coding',
+    author: 'Anthropic Engineering',
+    source: 'anthropic.com',
+    url: 'https://www.anthropic.com/engineering/claude-code-best-practices',
+    likedDate: '2026-02-20',
+    excerpt: 'A comprehensive guide on how to get the most out of Claude Code — from the explore-plan-code-commit workflow and CLAUDE.md files to multi-agent patterns and treating Claude like a junior engineer with tools, memory, and iteration.',
+    tags: ['AI', 'Developer Tools', 'Best Practices']
+  },
+  {
+    id: 7,
+    title: 'Making Claude Code More Secure and Autonomous',
+    author: 'Anthropic Engineering',
+    source: 'anthropic.com',
+    url: 'https://www.anthropic.com/engineering/claude-code-sandboxing',
+    likedDate: '2026-02-20',
+    excerpt: 'How Claude Code\'s new sandboxing features reduce permission prompts by 84% while increasing user safety through filesystem and network isolation, enabling more autonomous agentic workflows.',
+    tags: ['AI', 'Security', 'Developer Tools']
+  },
+  {
     id: 1,
     title: 'Building Resilient Systems with Circuit Breakers',
     author: 'Martin Fowler',
