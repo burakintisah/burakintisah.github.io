@@ -1,6 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Terminal, Menu, X, Github, Linkedin, Mail, FileText, Instagram, Moon, Sun, ChevronDown, Users } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, FileText, Instagram, Moon, Sun, ChevronDown, Users } from 'lucide-react';
+
+const HexagonB: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    className={className}
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#6366f1" />
+        <stop offset="100%" stopColor="#4338ca" />
+      </linearGradient>
+    </defs>
+    <polygon
+      points="16,1 29.86,8.5 29.86,23.5 16,31 2.14,23.5 2.14,8.5"
+      fill="url(#hexGrad)"
+    />
+    <text
+      x="16"
+      y="22"
+      textAnchor="middle"
+      fontFamily="Inter, system-ui, -apple-system, sans-serif"
+      fontWeight="700"
+      fontSize="18"
+      fill="white"
+      letterSpacing="-0.5"
+    >
+      B
+    </text>
+  </svg>
+);
 
 const Layout: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,9 +126,7 @@ const Layout: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2.5 group">
-              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/40 transition-colors">
-                <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
-              </div>
+              <HexagonB className="h-7 w-7 drop-shadow-sm group-hover:scale-105 transition-transform" />
               <span className="font-semibold text-lg text-gray-900 dark:text-white tracking-tight">Burak Intisah</span>
             </Link>
 
@@ -246,9 +276,7 @@ const Layout: React.FC = () => {
           {/* Header */}
           <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800">
             <div className="flex items-center space-x-2.5">
-              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50">
-                <Terminal className="h-5 w-5 text-primary-600 dark:text-primary-400" />
-              </div>
+              <HexagonB className="h-7 w-7 drop-shadow-sm" />
               <span className="font-semibold text-lg text-gray-900 dark:text-white">Menu</span>
             </div>
             <button
@@ -392,9 +420,7 @@ const Layout: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2.5">
-              <div className="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50">
-                <Terminal className="h-4 w-4 text-primary-600 dark:text-primary-400" />
-              </div>
+              <HexagonB className="h-6 w-6 drop-shadow-sm" />
               <span className="font-medium text-gray-800 dark:text-gray-200">Burak Intisah</span>
             </div>
             <div className="text-sm text-gray-400 dark:text-gray-500">
