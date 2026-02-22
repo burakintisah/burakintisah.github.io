@@ -8,6 +8,7 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
+    target: ['es2020', 'safari14'],
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
