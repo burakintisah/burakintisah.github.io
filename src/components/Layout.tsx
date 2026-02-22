@@ -73,16 +73,15 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200 flex flex-col relative">
-      {/* Decorative background elements */}
+      {/* Decorative background elements — GPU-accelerated with reduced blur for Safari compat */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-        {/* Gradient mesh orbs */}
-        <div className="absolute -top-[200px] right-[5%] w-[700px] h-[700px] bg-primary-300/25 dark:bg-primary-500/10 rounded-full blur-[180px]" />
-        <div className="absolute top-[30%] -left-[100px] w-[500px] h-[500px] bg-rose-200/20 dark:bg-rose-500/8 rounded-full blur-[150px]" />
-        <div className="absolute bottom-[10%] right-[15%] w-[600px] h-[600px] bg-sky-200/20 dark:bg-sky-500/8 rounded-full blur-[160px]" />
-        <div className="absolute bottom-[-150px] left-[20%] w-[500px] h-[500px] bg-amber-100/20 dark:bg-amber-500/5 rounded-full blur-[140px]" />
-        {/* Dot pattern + noise texture */}
+        {/* Gradient mesh orbs — transform-gpu forces GPU compositing to prevent Safari blank-page rendering */}
+        <div className="absolute -top-[200px] right-[5%] w-[900px] h-[900px] bg-primary-300/20 dark:bg-primary-500/8 rounded-full blur-[80px] transform-gpu" />
+        <div className="absolute top-[30%] -left-[100px] w-[700px] h-[700px] bg-rose-200/15 dark:bg-rose-500/5 rounded-full blur-[70px] transform-gpu" />
+        <div className="absolute bottom-[10%] right-[15%] w-[800px] h-[800px] bg-sky-200/15 dark:bg-sky-500/5 rounded-full blur-[75px] transform-gpu" />
+        <div className="absolute bottom-[-150px] left-[20%] w-[700px] h-[700px] bg-amber-100/15 dark:bg-amber-500/5 rounded-full blur-[65px] transform-gpu" />
+        {/* Dot pattern */}
         <div className="bg-dot-pattern absolute inset-0 opacity-50 dark:opacity-30" />
-        <div className="bg-noise absolute inset-0" />
       </div>
 
       <header
