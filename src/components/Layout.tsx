@@ -81,7 +81,6 @@ const Layout: React.FC = () => {
   const contentDropdownItems = [
     { name: 'Blog', path: '/blog' },
     { name: 'Bookshelf', path: '/bookshelf' },
-    { name: 'Reading List', path: '/reading-list' },
     { name: 'What I Use', path: '/uses' }
   ];
 
@@ -100,7 +99,7 @@ const Layout: React.FC = () => {
   };
 
   const isContentSectionActive = () => {
-    return location.pathname === '/blog' || location.pathname === '/bookshelf' || location.pathname === '/reading-list' || location.pathname === '/uses';
+    return location.pathname === '/blog' || location.pathname === '/bookshelf' || location.pathname === '/uses';
   };
 
   return (
