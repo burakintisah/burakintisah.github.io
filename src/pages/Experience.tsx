@@ -124,7 +124,7 @@ const Experience: React.FC = () => {
   const experiences: Experience[] = [
     {
       company: 'Cherry Technologies',
-      role: 'Backend Engineer',
+      role: 'Software Engineer',
       period: 'Jul 2023 – Present',
       location: 'San Francisco & Istanbul',
       achievements: [

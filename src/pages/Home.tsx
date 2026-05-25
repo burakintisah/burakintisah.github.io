@@ -168,7 +168,7 @@ const Home: React.FC = () => {
                       <div className="pl-4">
                         <span className="text-primary-300">"role"</span>
                         <span className="text-gray-500">: </span>
-                        <span className="text-emerald-300">"Backend Engineer"</span>
+                        <span className="text-emerald-300">"Software Engineer"</span>
                         <span className="text-gray-500">,</span>
                       </div>
                       <div className="pl-4">
@@ -268,7 +268,7 @@ const Home: React.FC = () => {
                     Burak Intisah
                   </h1>
                   <p className="mt-1 text-primary-600 dark:text-primary-400 font-medium text-sm">
-                    Backend Engineer
+                    Software Engineer
                   </p>
                   <p className="mt-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
                     Building highly scalable systems — from APIs and databases to full backend infrastructures.
