@@ -85,18 +85,11 @@ const Uses: React.FC = () => {
       link: 'https://cursor.sh/'
     },
     {
-      name: 'Warp',
-      description: 'Modern terminal with AI-powered command suggestions and collaborative features.',
-      usage: 'Command line interface with intelligent autocomplete, command history.',
+      name: 'Superset',
+      description: 'A desktop app for orchestrating multiple AI coding agents in parallel across isolated Git worktrees.',
+      usage: 'Running Claude Code, Codex, and other CLI agents simultaneously on different tasks without merge conflicts.',
       icon: <Terminal className="h-6 w-6" />,
-      link: 'https://www.warp.dev/'
-    },
-    {
-      name: 'Claude Code',
-      description: 'Anthropic\'s agentic coding tool that reads your codebase, edits files, and runs commands directly from the terminal.',
-      usage: 'AI-powered pair programming, building features, fixing bugs, and automating development tasks across entire projects.',
-      icon: <Terminal className="h-6 w-6" />,
-      link: 'https://www.anthropic.com/claude-code'
+      link: 'https://superset.sh/'
     }
   ];
 
