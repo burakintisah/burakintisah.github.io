@@ -11,8 +11,8 @@ const HexagonB: React.FC<{ className?: string }> = ({ className }) => (
   >
     <defs>
       <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#6366f1" />
-        <stop offset="100%" stopColor="#4338ca" />
+        <stop offset="0%" stopColor="#3f5a80" />
+        <stop offset="100%" stopColor="#22303f" />
       </linearGradient>
     </defs>
     <polygon

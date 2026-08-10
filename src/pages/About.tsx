@@ -81,7 +81,7 @@ const About: React.FC = () => {
           <AnimatedSection>
             <div className="flex justify-center mt-8 md:mt-12">
               <div className="relative">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-400 via-primary-500 to-purple-500 opacity-20 blur-sm"></div>
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary-400 via-primary-500 to-primary-700 opacity-20 blur-sm"></div>
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-[3px] border-white dark:border-gray-800 shadow-elevated">
                   <img
                     src="/profile.png"
