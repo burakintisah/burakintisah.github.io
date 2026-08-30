@@ -36,15 +36,16 @@ const PhotoCard: React.FC<{
   };
 
   const cardHeight = imageLoaded ? calculateHeight() : 300;
+  const isWide = Boolean(photo.wide);
 
   return (
     <div
-      className="relative overflow-hidden rounded-xl group break-inside-avoid mb-4 transition-all duration-300 hover:shadow-card-hover"
-      style={{ height: `${cardHeight}px` }}
+      className="relative overflow-hidden rounded-xl group transition-all duration-300 hover:shadow-card-hover"
+      style={isWide ? undefined : { height: `${cardHeight}px` }}
     >
       {/* Loading skeleton */}
       {!imageLoaded && !imageError && (
-        <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 relative overflow-hidden rounded-xl">
+        <div className={`w-full bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 relative overflow-hidden rounded-xl ${isWide ? 'aspect-video' : 'h-full'}`}>
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
         </div>
       )}
@@ -72,9 +73,9 @@ const PhotoCard: React.FC<{
             alt={photo.alt}
             loading="lazy"
             decoding="async"
-            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`w-full transition-all duration-500 group-hover:scale-105 ${
+              isWide ? 'h-auto object-contain' : 'h-full object-cover'
+            } ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={handleImageLoad}
             onError={handleImageError}
             style={{
@@ -202,14 +203,12 @@ const Photography: React.FC = () => {
         </AnimatedSection>
 
         {/* Photo gallery */}
-        <div
-          className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 space-y-0"
-          style={{ columnGap: '1rem' }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayedPhotos.map((photo, index) => (
             <AnimatedSection
               key={`${activeFilter}-${photo.id}`}
               delay={index * 0.05}
+              className={photo.wide ? 'sm:col-span-2' : undefined}
             >
               <PhotoCard photo={photo} />
             </AnimatedSection>

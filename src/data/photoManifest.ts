@@ -4,6 +4,7 @@
 export interface PhotoEntry {
   filename: string;
   tags: string[];
+  wide?: boolean;
 }
 
 export type PhotoManifestType = Record<string, PhotoEntry[]>;
@@ -13,6 +14,7 @@ export const PHOTO_MANIFEST: PhotoManifestType = {
     { filename: 'hanbok-burak-1.jpeg', tags: ['Korea', 'Seoul', 'Culture'] },
     { filename: 'seoul-hanbok-2.jpg', tags: ['Korea', 'Seoul', 'Culture'] },
     { filename: 'seoul-starfield-library-1.jpg', tags: ['Korea', 'Seoul'] },
+    { filename: 'seoul-gentle-monster-1.jpg', tags: ['Korea', 'Seoul'] },
   ],
 
   japan: [
@@ -26,7 +28,6 @@ export const PHOTO_MANIFEST: PhotoManifestType = {
     { filename: 'san-diego-burak-1.jpeg', tags: ['USA', 'San Diego'] },
     { filename: 'newyork-times-square-1.jpg', tags: ['USA', 'New York'] },
     { filename: 'newyork-six-musical-1.jpg', tags: ['USA', 'New York'] },
-    { filename: 'newyork-boutique-1.jpg', tags: ['USA', 'New York'] },
     { filename: 'losangeles-santa-monica-pier-1.jpg', tags: ['USA', 'Los Angeles'] },
     { filename: 'anaheim-disneyland-1.jpg', tags: ['USA', 'Los Angeles'] },
   ],
@@ -34,7 +35,7 @@ export const PHOTO_MANIFEST: PhotoManifestType = {
   canada: [
     { filename: 'montreal-notre-dame-1.jpg', tags: ['Canada', 'Montreal'] },
     { filename: 'montreal-old-town-1.jpg', tags: ['Canada', 'Montreal'] },
-    { filename: 'niagara-falls-boat-1.jpg', tags: ['Canada', 'Niagara Falls'] },
+    { filename: 'niagara-falls-boat-1.jpg', tags: ['Canada', 'Niagara Falls'], wide: true },
   ],
 
   cherry: [

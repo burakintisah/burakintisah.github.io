@@ -12,6 +12,7 @@ export interface Photo {
   folder: string;
   filename: string;
   tags: string[];
+  wide?: boolean;
 }
 
 // Common image extensions
@@ -82,6 +83,7 @@ export const createPhotoManifest = (photoFiles: PhotoManifestType): Photo[] => {
           folder: capitalizeFolder(folder),
           filename: entry.filename,
           tags: entry.tags,
+          wide: entry.wide,
         });
       }
     });
