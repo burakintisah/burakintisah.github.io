@@ -113,6 +113,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   japan: 'Japan',
   korea: 'Korea',
   USA: 'USA',
+  canada: 'Canada',
 };
 
 // Main Photography component

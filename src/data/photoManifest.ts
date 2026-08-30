@@ -11,15 +11,30 @@ export type PhotoManifestType = Record<string, PhotoEntry[]>;
 export const PHOTO_MANIFEST: PhotoManifestType = {
   korea: [
     { filename: 'hanbok-burak-1.jpeg', tags: ['Korea', 'Seoul', 'Culture'] },
+    { filename: 'seoul-hanbok-2.jpg', tags: ['Korea', 'Seoul', 'Culture'] },
+    { filename: 'seoul-starfield-library-1.jpg', tags: ['Korea', 'Seoul'] },
   ],
 
   japan: [
     { filename: 'kyoto-fushimi_inari-1.jpg', tags: ['Japan', 'Kyoto', 'Temple'] },
     { filename: 'osaka-dotonbori-burak-1.png', tags: ['Japan', 'Osaka'] },
+    { filename: 'tokyo-hokusai-1.jpg', tags: ['Japan', 'Tokyo', 'Culture'] },
+    { filename: 'tokyo-imperial-palace-1.jpg', tags: ['Japan', 'Tokyo'] },
   ],
 
   USA: [
     { filename: 'san-diego-burak-1.jpeg', tags: ['USA', 'San Diego'] },
+    { filename: 'newyork-times-square-1.jpg', tags: ['USA', 'New York'] },
+    { filename: 'newyork-six-musical-1.jpg', tags: ['USA', 'New York'] },
+    { filename: 'newyork-boutique-1.jpg', tags: ['USA', 'New York'] },
+    { filename: 'losangeles-santa-monica-pier-1.jpg', tags: ['USA', 'Los Angeles'] },
+    { filename: 'anaheim-disneyland-1.jpg', tags: ['USA', 'Los Angeles'] },
+  ],
+
+  canada: [
+    { filename: 'montreal-notre-dame-1.jpg', tags: ['Canada', 'Montreal'] },
+    { filename: 'montreal-old-town-1.jpg', tags: ['Canada', 'Montreal'] },
+    { filename: 'niagara-falls-boat-1.jpg', tags: ['Canada', 'Niagara Falls'] },
   ],
 
   cherry: [
