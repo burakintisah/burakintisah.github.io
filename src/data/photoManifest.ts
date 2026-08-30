@@ -25,7 +25,6 @@ export const PHOTO_MANIFEST: PhotoManifestType = {
   ],
 
   USA: [
-    { filename: 'san-diego-burak-1.jpeg', tags: ['USA', 'San Diego'] },
     { filename: 'newyork-times-square-1.jpg', tags: ['USA', 'New York'] },
     { filename: 'newyork-six-musical-1.jpg', tags: ['USA', 'New York'] },
     { filename: 'losangeles-santa-monica-pier-1.jpg', tags: ['USA', 'Los Angeles'] },
